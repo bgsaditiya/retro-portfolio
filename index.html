@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>ZOLFER // Full-Stack Developer &amp; Pixel Artisan</title>
+  <meta name="description" content="ZOLFER // Full-Stack Developer & Pixel Artisan. 15+ years building scalable web, mobile apps, and pixel-perfect digital experiences."/>
+  <meta name="theme-color" content="#0a0d12"/>
+  <meta property="og:title" content="ZOLFER // Full-Stack Developer & Pixel Artisan"/>
+  <meta property="og:description" content="Retro pixel developer portfolio with solid code architecture and pixel-perfect design."/>
+  <meta property="og:type" content="website"/>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%230a0d12'/%3E%3Crect x='2' y='2' width='12' height='12' fill='%23121720' stroke='%2338bdf8' stroke-width='1'/%3E%3Ctext x='8' y='12' font-family='monospace' font-size='9' font-weight='bold' fill='%23e2e8f0' text-anchor='middle'%3EZF%3C/text%3E%3C/svg%3E"/>
+
+  <!-- Google Fonts for Retro Pixel & Monospace Aesthetics -->
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@300;400;500;600;700&amp;family=Press+Start+2P&amp;family=Silkscreen:wght@400;700&amp;family=Space+Mono:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+
+  <!-- Tailwind CSS CDN with plugins -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+  <!-- Tailwind Configuration -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            retro: {
+              black: '#0a0d12',
+              dark: '#121720',
+              card: '#161d28',
+              accent: '#E2E8F0', // elegant light slate / silver accent
+              accentSubtle: '#94A3B8',
+              sage: '#5EEAD4', // subtle mint / sage
+              lime: '#4ADE80',
+              cyan: '#38BDF8',
+              pink: '#F472B6',
+              purple: '#A78BFA',
+              muted: '#64748B',
+              border: '#273548'
+            }
+          },
+          fontFamily: {
+            pixel: ['"Press Start 2P"', 'monospace'],
+            silkscreen: ['"Silkscreen"', 'monospace'],
+            mono: ['"Space Mono"', '"JetBrains Mono"', 'monospace'],
+            code: ['"JetBrains Mono"', 'monospace']
+          },
+          boxShadow: {
+            'pixel-accent': '4px 4px 0px #94A3B8',
+            'pixel-accent-sm': '2px 2px 0px #64748B',
+            'pixel-purple': '4px 4px 0px #A78BFA',
+            'pixel-cyan': '4px 4px 0px #38BDF8',
+            'pixel-white': '4px 4px 0px #CBD5E1',
+            'pixel-hover': '5px 5px 0px #E2E8F0'
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- BEGIN: Custom Retro Styles -->
+  <style data-purpose="background-matrix">
+    /* Animated subtle dot matrix + grid background */
+    @keyframes moveRetroGrid {
+      0% {
+        background-position: 0 0, 16px 16px, 0 0;
+      }
+      100% {
+        background-position: 0 64px, 16px 80px, 0 64px;
+      }
+    }
+
+    .animated-retro-matrix {
+      background-color: #0a0d12;
+      background-image: 
+        radial-gradient(rgba(148, 163, 184, 0.14) 1px, transparent 1px),
+        radial-gradient(rgba(56, 189, 248, 0.08) 1px, transparent 1px),
+        linear-gradient(rgba(39, 53, 72, 0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(39, 53, 72, 0.07) 1px, transparent 1px);
+      background-size: 32px 32px, 32px 32px, 64px 64px, 64px 64px;
+      animation: moveRetroGrid 28s linear infinite;
+    }
+
+    /* Scanline overlay for vintage CRT feel */
+    .crt-scanlines {
+      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.22) 50%);
+      background-size: 100% 4px;
+    }
+  </style>
+<style data-purpose="pixel-components">
+    /* Pixel border and buttons with refined slate/silver palette */
+    .pixel-box {
+      border: 2px solid #94A3B8;
+      box-shadow: 4px 4px 0px #334155;
+    }
+
+    .pixel-box-purple {
+      border: 2px solid #A78BFA;
+      box-shadow: 4px 4px 0px #5B21B6;
+    }
+
+    .pixel-box-cyan {
+      border: 2px solid #38BDF8;
+      box-shadow: 4px 4px 0px #0369A1;
+    }
+
+    .pixel-box-dark {
+      border: 2px solid #273548;
+      box-shadow: 4px 4px 0px #0e131b;
+    }
+
+    .pixel-btn {
+      transition: all 0.15s ease-in-out;
+      image-rendering: pixelated;
+    }
+
+    .pixel-btn:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 5px 5px 0px #E2E8F0;
+    }
+
+    .pixel-btn:active {
+      transform: translate(2px, 2px);
+      box-shadow: 1px 1px 0px #94A3B8;
+    }
+
+    /* Custom pixel blinking animation */
+    @keyframes pixelBlink {
+      0%, 49% { opacity: 1; }
+      50%, 100% { opacity: 0; }
+    }
+
+    .cursor-blink {
+      animation: pixelBlink 1s infinite;
+    }
+
+    /* Pixel art canvas rendering crispness */
+    .pixelated-art {
+      image-rendering: pixelated;
+      image-rendering: crisp-edges;
+    }
+  </style>
+  <!-- END: Custom Retro Styles -->
+</head>
+<body class="bg-retro-black text-gray-200 font-mono relative min-h-screen selection:bg-slate-300 selection:text-black overflow-x-hidden">
+  <!-- BEGIN: Dynamic Ambient Retro Canvas & Grid Layers -->
+<div class="fixed inset-0 pointer-events-none z-0">
+  <!-- Moving Retro Matrix / Dot Grid -->
+  <div class="absolute inset-0 animated-retro-matrix"></div>
+  <!-- Interactive & Ambient 8-Bit Pixel Stars Canvas -->
+  <canvas class="absolute inset-0 w-full h-full pixelated-art" id="retro-starfield"></canvas>
+  <!-- Subtle CRT Scanlines -->
+  <div class="absolute inset-0 crt-scanlines opacity-40"></div>
+</div>
+<!-- END: Dynamic Ambient Retro Canvas & Grid Layers -->
+
+  <div class="relative z-10 flex flex-col min-h-screen">
+    <!-- BEGIN: SiteHeader -->
+<header class="sticky top-0 z-50 bg-retro-black/95 backdrop-blur border-b-2 border-retro-border">
+  <div class="max-w-6xl mx-auto px-3 sm:px-6 py-3 sm:py-4 flex items-center justify-between">
+    <!-- Brand Logo in 8-Bit Typography -->
+    <a class="flex items-center gap-2 sm:gap-3 group" href="#hero">
+      <div class="bg-slate-200 text-slate-900 font-pixel text-xs sm:text-lg px-2 sm:px-2.5 py-1 sm:py-1.5 shadow-[2px_2px_0px_#64748B] sm:shadow-[3px_3px_0px_#64748B] tracking-tighter group-hover:bg-retro-cyan transition-colors">
+        B
+      </div>
+      <div class="flex flex-col">
+        <span class="font-pixel text-[10px] sm:text-xs tracking-wider text-slate-200 group-hover:text-retro-cyan transition-colors">.DEV</span>
+        <!-- <span class="text-[9px] text-retro-muted font-silkscreen md:hidden">LVL 99</span>
+        <span class="text-[10px] text-retro-muted font-silkscreen hidden md:inline-block">LEVEL 99 CODER</span> -->
+      </div>
+    </a>
+    
+    <!-- Mobile Navigation Links (Screen 2: Mobile Responsive) -->
+    <nav class="flex md:hidden items-center gap-2 sm:gap-4 font-silkscreen text-[10px] sm:text-xs uppercase tracking-wider">
+      <a class="text-gray-400 hover:text-slate-100 transition-colors" href="#about">ABOUT</a>
+      <a class="text-gray-400 hover:text-slate-100 transition-colors" href="#experience">Experience</a>
+      <!-- <a class="text-gray-400 hover:text-slate-100 transition-colors" href="#projects">WORKS</a> -->
+    </nav>
+
+    <!-- Desktop Navigation Links (Screen 1: Desktop Animated) -->
+    <nav class="hidden md:flex items-center gap-7 font-silkscreen text-xs uppercase tracking-wider">
+      <a class="text-gray-400 hover:text-slate-100 transition-colors flex items-center gap-1" href="#about">
+        <span class="text-slate-400 opacity-70">#</span> About
+      </a>
+      <!-- <a class="text-gray-400 hover:text-slate-100 transition-colors flex items-center gap-1" href="#skills">
+        <span class="text-slate-400 opacity-70">#</span> Skills
+      </a> -->
+      <a class="text-gray-400 hover:text-slate-100 transition-colors flex items-center gap-1" href="#experience">
+        <span class="text-slate-400 opacity-70">#</span> Experience
+      </a>
+      <!-- <a class="text-gray-400 hover:text-slate-100 transition-colors flex items-center gap-1" href="#projects">
+        <span class="text-slate-400 opacity-70">#</span> Works
+      </a> -->
+      <a class="text-gray-400 hover:text-slate-100 transition-colors flex items-center gap-1" href="#contact">
+        <span class="text-slate-400 opacity-70">#</span> Contact
+      </a>
+    </nav>
+
+    <!-- Primary Action Button (Screen 1 & 2 responsive) -->
+    <div class="flex items-center gap-2 sm:gap-3">
+      <a class="pixel-btn inline-block bg-slate-200 text-slate-900 font-pixel text-[9px] sm:text-[11px] px-2.5 sm:px-4 py-1.5 sm:py-2.5 shadow-[2px_2px_0px_#64748B] sm:shadow-[3px_3px_0px_#64748B] border border-slate-900 sm:border-2 uppercase font-bold tracking-tight hover:bg-white" href="#contact">
+        <span class="md:hidden">TALK</span>
+        <span class="hidden md:inline">LET'S TALK</span>
+      </a>
+    </div>
+  </div>
+</header>
+<!-- END: SiteHeader -->
+    <main class="flex-grow">
+      <!-- BEGIN: HeroSection -->
+<section class="relative pt-10 sm:pt-12 pb-16 sm:pb-20 md:py-24 border-b border-retro-border overflow-hidden" id="hero">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <div class="flex flex-col lg:grid lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+      
+      <!-- Left: Hero Text & Badges -->
+      <div class="w-full lg:col-span-7 flex flex-col gap-4 lg:gap-6 text-center lg:text-left items-center lg:items-start">
+        <div class="inline-flex items-center gap-2 px-2.5 sm:px-3 py-1 bg-retro-dark border border-retro-border w-max text-retro-sage font-silkscreen text-[11px] sm:text-xs shadow-pixel-accent-sm">
+          <span class="inline-block w-2 sm:w-2.5 h-2 sm:h-2.5 bg-retro-sage animate-pulse"></span>
+          SYSTEM ONLINE // READY TO CODE
+        </div>
+        
+        <h1 class="font-mono text-2xl sm:text-4xl md:text-5xl font-bold text-slate-100 tracking-tight leading-tight">
+          BAGAS ADITIA
+        </h1>
+        
+        <div class="font-mono text-xs sm:text-sm font-medium tracking-wider text-retro-cyan leading-relaxed flex items-center justify-center lg:justify-start gap-1.5 flex-wrap">
+          <span class="hidden sm:inline">&gt; FULL-STACK ARCHITECT &amp; RETRO ENTHUSIAST</span>
+          <span class="sm:hidden">&gt; FULL-STACK ARCHITECT &amp; RETRO DEV</span>
+          <span class="inline-block w-2 h-3 sm:h-4 bg-retro-cyan cursor-blink"></span>
+        </div>
+        
+        <p class="font-mono text-slate-300 text-xs sm:text-sm leading-relaxed max-w-xl font-normal">
+          I'm a software developer with a lifelong passion for programming. Since scripting in early mIRC bot days, I build intuitive, scalable web &amp; mobile experiences with solid code architecture and pixel-perfect design integrity.
+        </p>
+        
+        <!-- Constellation Tech Icons -->
+        <div class="pt-1 lg:pt-2 flex flex-wrap justify-center lg:justify-start gap-2 sm:gap-2.5 text-[11px] sm:text-xs font-silkscreen">
+          <span class="bg-retro-card border border-retro-cyan/60 text-retro-cyan px-2 sm:px-2.5 py-0.5 sm:py-1 shadow-[2px_2px_0px_#1e293b]">
+            ⚛ REACT
+          </span>
+          <span class="bg-retro-card border border-retro-sage/60 text-retro-sage px-2 sm:px-2.5 py-0.5 sm:py-1 shadow-[2px_2px_0px_#1e293b]">
+            ⬢ NODE.JS
+          </span>
+          <span class="bg-retro-card border border-slate-400 text-slate-200 px-2 sm:px-2.5 py-0.5 sm:py-1 shadow-[2px_2px_0px_#1e293b]">
+            JS TYPESCRIPT
+          </span>
+          <span class="bg-retro-card border border-retro-purple/60 text-retro-purple px-2 sm:px-2.5 py-0.5 sm:py-1 shadow-[2px_2px_0px_#1e293b]">
+            ▲ NEXT.JS
+          </span>
+          <span class="bg-retro-card border border-retro-pink/60 text-retro-pink px-2 sm:px-2.5 py-0.5 sm:py-1 shadow-[2px_2px_0px_#1e293b]">
+            ♨ GRAPHQL
+          </span>
+        </div>
+        
+        <!-- Hero Action Buttons -->
+        <div class="flex flex-wrap justify-center lg:justify-start items-center gap-3 sm:gap-4 pt-2 lg:pt-3 w-full">
+          <a class="pixel-btn flex-1 sm:flex-initial text-center bg-slate-200 text-slate-900 font-pixel text-[11px] sm:text-xs px-4 sm:px-5 py-2.5 sm:py-3 border-2 border-slate-900 shadow-[3px_3px_0px_#64748B] hover:bg-white" href="#about">
+            ABOUT ME
+          </a>
+          <a class="pixel-btn flex-1 sm:flex-initial text-center bg-retro-dark hover:bg-retro-card text-gray-200 font-pixel text-[11px] sm:text-xs px-4 sm:px-5 py-2.5 sm:py-3 border-2 border-retro-border hover:border-slate-300 shadow-[3px_3px_0px_#FFFFFF]" href="#contact">
+            CONTACT ME
+          </a>
+        </div>
+      </div>
+      
+      <!-- Right: Pixel Character / Avatar Showcase Frame -->
+      <div class="w-full max-w-xs sm:max-w-sm lg:col-span-5 flex justify-center">
+        <div class="relative w-full">
+          <!-- Retro Box Frame Header -->
+          <div class="bg-retro-card border-2 border-slate-400 shadow-[4px_4px_0px_#334155] p-3 sm:p-4 relative">
+            <div class="flex items-center justify-between pb-2 sm:pb-3 mb-2 sm:mb-3 border-b-2 border-retro-border font-silkscreen text-[11px] sm:text-xs text-slate-300">
+              <span class="flex items-center gap-1.5">
+                <span class="w-2 sm:w-2.5 h-2 sm:h-2.5 bg-slate-300 inline-block"></span>
+                AVATAR.EXE
+              </span>
+              <span class="text-retro-muted">ID: #00256</span>
+            </div>
+            
+            <!-- Pixel Art Display Canvas -->
+            <div class="bg-retro-black border-2 border-retro-border p-3 sm:p-4 flex flex-col items-center justify-center relative overflow-hidden">
+              <div class="absolute inset-0 opacity-15 bg-[radial-gradient(#94a3b8_1px,transparent_1px)] [background-size:8px_8px]"></div>
+              
+              <!-- 8-Bit Pixel Character SVG -->
+              <svg class="w-40 h-40 sm:w-52 sm:h-52 pixelated-art drop-shadow-[0_8px_16px_rgba(148,163,184,0.12)] relative z-10" fill="none" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <!-- Bun / Topknot Hair -->
+                <rect fill="#3A2B20" height="4" width="4" x="15" y="2"></rect>
+                <rect fill="#241B14" height="2" width="2" x="16" y="3"></rect>
+                <!-- Main Hair & Head Base -->
+                <rect fill="#4B382A" height="2" width="10" x="7" y="3"></rect>
+                <rect fill="#4B382A" height="7" width="12" x="6" y="5"></rect>
+                <rect fill="#4B382A" height="6" width="14" x="5" y="7"></rect>
+                <!-- Face Skin -->
+                <rect fill="#F4CCA1" height="5" width="10" x="7" y="8"></rect>
+                <rect fill="#E8B88B" height="4" width="8" x="8" y="9"></rect>
+                <!-- Eyes (8-bit squint) -->
+                <rect fill="#1A1818" height="1" width="2" x="8" y="10"></rect>
+                <rect fill="#1A1818" height="1" width="2" x="14" y="10"></rect>
+                <!-- Beard / Mask / Lower Head -->
+                <rect fill="#2C272E" height="4" width="10" x="7" y="12"></rect>
+                <rect fill="#201C21" height="3" width="12" x="6" y="13"></rect>
+                <!-- Body Outfit (Dark Robe) -->
+                <rect fill="#1D2026" height="6" width="10" x="7" y="15"></rect>
+                <rect fill="#2B303A" height="4" width="12" x="6" y="16"></rect>
+                <rect fill="#1D2026" height="3" width="2" x="5" y="16"></rect>
+                <rect fill="#1D2026" height="3" width="2" x="17" y="16"></rect>
+                <!-- Subtle Mug in hand -->
+                <rect fill="#CBD5E1" height="3" width="3" x="4" y="17"></rect>
+                <rect fill="#FFFFFF" height="1" width="3" x="4" y="16"></rect>
+                <rect fill="#94A3B8" height="2" width="1" x="3" y="18"></rect>
+                <!-- Legs & Boots -->
+                <rect fill="#111317" height="3" width="3" x="8" y="21"></rect>
+                <rect fill="#111317" height="3" width="3" x="13" y="21"></rect>
+              </svg>
+              
+              <div class="mt-2 sm:mt-3 w-full bg-retro-card border border-retro-border py-1 sm:py-1.5 px-2.5 sm:px-3 flex justify-between items-center font-silkscreen text-[10px] sm:text-[11px]">
+                <span class="text-retro-muted">CLASS:</span>
+                <span class="text-slate-200 font-bold">FULL-STACK ROGUE</span>
+              </div>
+            </div>
+            
+            <!-- Quick Status Footer on Card -->
+            <div class="mt-2 sm:mt-3 flex items-center justify-between text-[10px] sm:text-[11px] font-silkscreen text-retro-muted">
+              <span>EXP: +15 YEARS</span>
+              <span class="text-retro-sage flex items-center gap-1">
+                <span class="w-1.5 h-1.5 bg-retro-sage inline-block"></span>
+                <span class="hidden sm:inline">COFFEE_POWER: 100%</span>
+                <span class="sm:hidden">COFFEE: 100%</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+<!-- END: HeroSection -->
+      <!-- BEGIN: AboutMeSection -->
+<section class="py-16 md:py-24 border-b border-retro-border" id="about">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <!-- Section Header with refined outline -->
+    <div class="text-center mb-8 md:mb-14">
+      <h2 class="font-mono font-bold text-base sm:text-xl text-slate-100 inline-block relative px-5 sm:px-6 py-1.5 sm:py-2 border-2 border-slate-400 shadow-[4px_4px_0px_#334155] bg-retro-dark tracking-widest uppercase">
+        ABOUT ME
+      </h2>
+      <p class="font-silkscreen text-[11px] sm:text-xs text-retro-muted mt-3 sm:mt-4 uppercase tracking-wider">
+        // ORIGIN STORY &amp; PASSION FOR CODE
+      </p>
+    </div>
+    
+    <div class="flex flex-col lg:grid lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+      <!-- Left: Narrative Details & Stats -->
+      <div class="w-full lg:col-span-7 bg-retro-dark border-2 border-retro-border p-4 sm:p-6 md:p-8 relative shadow-pixel-white">
+        <div class="flex items-center gap-2 mb-3 sm:mb-4 text-xs font-silkscreen text-retro-cyan">
+          <span class="text-slate-300">&gt;</span> BIO_TERMINAL: READ_ONLY
+        </div>
+        <div class="space-y-3 sm:space-y-4 font-mono text-xs sm:text-sm leading-relaxed text-gray-300">
+          <p>
+            <strong class="text-slate-100 font-bold">A detail-oriented Software Engineer with a solid background in healthcare technology and digital asset production.</strong> Proven track record in developing and optimizing enterprise-scale Hospital Information Systems (SIMRS) and Electronic Medical Records (EMR) at both regional public hospitals and top health-tech vendors like PT Jasamedika Saranatama. Adept at handling complex system integrations, including BPJS and SatuSehat APIs.
+          </p>
+          <p>
+            Combining a strong technical development foundation with a sharp eye for detail developed during an earlier tenure as a Photo Editor at PT Pippeline Technologies Indonesia, bringing a unique blend of technical precision and visual excellence to software projects.
+          </p>
+        </div>
+      </div>
+      
+      <!-- Right: Social Links & Tech Focus Card -->
+      <div class="w-full lg:col-span-5 flex flex-col gap-4 sm:gap-6">
+        <div class="bg-retro-dark border-2 border-slate-400 p-4 sm:p-6 shadow-[4px_4px_0px_#334155]">
+          <h3 class="font-mono font-bold text-xs text-slate-200 mb-3 sm:mb-4 uppercase tracking-wider">
+            STATUS &amp; PROFILES
+          </h3>
+          <div class="flex flex-col divide-y divide-retro-border font-silkscreen text-[11px] sm:text-xs">
+            <div class="py-2.5 sm:py-3 flex justify-between items-center">
+              <span class="text-retro-muted">LOCATION:</span>
+              <span class="text-gray-200">TRENGGALEK, ONSITE &amp; REMOTE</span>
+            </div>
+            <div class="py-2.5 sm:py-3 flex justify-between items-center">
+              <span class="text-retro-muted">STATUS:</span>
+              <span class="text-retro-sage font-bold">AVAILABLE FOR WORK</span>
+            </div>
+            <div class="py-2.5 sm:py-3 flex justify-between items-center">
+              <span class="text-retro-muted">GITHUB:</span>
+              <a class="text-retro-cyan hover:underline flex items-center gap-1" href="https://github.com/bgsaditiya" rel="noopener noreferrer" target="_blank">
+                github.com/bgsaditiya ↗
+              </a>
+            </div>
+            <div class="py-2.5 sm:py-3 flex justify-between items-center">
+              <span class="text-retro-muted">LINKEDIN:</span>
+              <a class="text-retro-cyan hover:underline flex items-center gap-1" href="https://www.linkedin.com/in/bgsaditiya" rel="noopener noreferrer" target="_blank">
+                linkedin.com/in/bgsaditiya ↗
+              </a>
+            </div>
+          </div>
+          <!-- Terminal Quote -->
+          <div class="mt-4 sm:mt-5 p-2.5 sm:p-3 bg-retro-black border border-retro-border font-mono text-[11px] sm:text-xs text-gray-400">
+            <span class="text-slate-300">root@dev:~$</span> "Write code that humans can understand, not just computers."
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- END: AboutMeSection -->
+<!-- BEGIN: ExperienceSection -->
+<section class="py-16 md:py-24 border-b border-retro-border" id="experience">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <!-- Section Title -->
+    <div class="text-center mb-8 md:mb-14">
+      <h2 class="font-mono font-bold text-base sm:text-xl text-slate-100 inline-block px-5 sm:px-6 py-1.5 sm:py-2 border-2 border-slate-400 shadow-[4px_4px_0px_#334155] bg-retro-dark tracking-widest uppercase">
+        EXPERIENCE
+      </h2>
+      <p class="font-silkscreen text-[11px] sm:text-xs text-retro-muted mt-3 sm:mt-4 uppercase tracking-wider">
+        // CAREER QUEST LOG &amp; MILESTONES
+      </p>
+    </div>
+    
+    <!-- Experience Table/List -->
+    <div class="border-2 border-retro-border bg-retro-dark divide-y divide-retro-border font-silkscreen text-xs shadow-pixel-white">
+      
+      <!-- Experience Row 1 -->
+      <details class="group p-3 sm:p-4 md:p-5 transition-colors hover:bg-retro-card cursor-pointer" open="">
+        <summary class="list-none select-none">
+          <!-- Mobile Summary (Screen 2: Mobile Responsive) -->
+          <div class="flex md:hidden flex-col gap-1.5">
+            <div class="flex items-center justify-between">
+              <span class="text-slate-200 font-bold text-xs tracking-wide">SEPT 2026 - PRESENT</span>
+              <span class="bg-retro-black border border-slate-500 text-slate-300 text-[9px] px-1.5 py-0.5">CURRENT</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <div class="text-gray-200 uppercase font-bold text-[11px]">Regional Public Hospital</div>
+              <span class="font-pixel text-slate-300 text-xs group-open:rotate-45 transition-transform">+</span>
+            </div>
+            <div class="text-retro-cyan text-[11px]">IT Programmer</div>
+            <div class="text-retro-muted text-[10px]">TRENGGALEK, ID</div>
+          </div>
+
+          <!-- Desktop Summary (Screen 1: Desktop Animated) -->
+          <div class="hidden md:flex md:items-center justify-between gap-3">
+            <div class="flex items-center gap-3">
+              <span class="text-slate-200 font-bold text-sm tracking-wide">SEPT 2026 - PRESENT</span>
+              <span class="bg-retro-black border border-slate-500 text-slate-300 text-[10px] px-2 py-0.5">CURRENT</span>
+            </div>
+            <div class="text-gray-200 uppercase font-bold text-xs">
+              Regional Public Hospital
+            </div>
+            <div class="text-retro-cyan">
+              IT Programmer
+            </div>
+            <div class="text-retro-muted flex items-center justify-end gap-4">
+              <span>TRENGGALEK, ID</span>
+              <span class="font-pixel text-slate-300 text-sm group-open:rotate-45 transition-transform inline-block">+</span>
+            </div>
+          </div>
+        </summary>
+        <div class="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-retro-border/60 font-mono text-xs text-gray-300 leading-relaxed">
+          Leading web application development using React Native &amp; modern TypeScript. Responsible for architecting reusable component libraries, optimizing state management, and collaborating with cross-functional agile teams.
+        </div>
+      </details>
+      
+      <!-- Experience Row 2 -->
+      <details class="group p-3 sm:p-4 md:p-5 transition-colors hover:bg-retro-card cursor-pointer">
+        <summary class="list-none select-none">
+          <!-- Mobile Summary -->
+          <div class="flex md:hidden flex-col gap-1.5">
+            <div class="flex items-center justify-between">
+              <span class="text-slate-300 font-bold text-xs tracking-wide">JAN 2025 - SEPT 2026</span>
+              <span class="font-pixel text-slate-300 text-xs group-open:rotate-45 transition-transform">+</span>
+            </div>
+            <div class="text-gray-200 uppercase font-bold text-[11px]">PT Jasamedika Saranatama</div>
+            <div class="text-retro-cyan text-[11px]">Software Engineer</div>
+            <div class="text-retro-muted text-[10px]">BANDUNG, ID</div>
+          </div>
+
+          <!-- Desktop Summary -->
+          <div class="hidden md:flex md:items-center justify-between gap-3">
+            <div class="flex items-center gap-3">
+              <span class="text-slate-300 font-bold text-sm tracking-wide">JAN 2025 - SEPT 2026</span>
+            </div>
+            <div class="text-gray-200 uppercase font-bold text-xs">
+              PT Jasamedika Saranatama
+            </div>
+            <div class="text-retro-cyan">
+              Software Engineer
+            </div>
+            <div class="text-retro-muted flex items-center justify-end gap-4">
+              <span>BANDUNG, ID</span>
+              <span class="font-pixel text-slate-300 text-sm group-open:rotate-45 transition-transform inline-block">+</span>
+            </div>
+          </div>
+        </summary>
+        <div class="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-retro-border/60 font-mono text-xs text-gray-300 leading-relaxed">
+          Developed and optimized enterprise-scale Hospital Information System (SIMRS) modules, improving operational efficiency for client hospitals.
+        </div>
+      </details>
+      
+      <!-- Experience Row 3 -->
+      <details class="group p-3 sm:p-4 md:p-5 transition-colors hover:bg-retro-card cursor-pointer">
+        <summary class="list-none select-none">
+          <!-- Mobile Summary -->
+          <div class="flex md:hidden flex-col gap-1.5">
+            <div class="flex items-center justify-between">
+              <span class="text-slate-300 font-bold text-xs tracking-wide">JUL 2025 - NOV 2025</span>
+              <span class="font-pixel text-slate-300 text-xs group-open:rotate-45 transition-transform">+</span>
+            </div>
+            <div class="text-gray-200 uppercase font-bold text-[11px]">PT Pippeline Technologies Indonesia</div>
+            <div class="text-retro-cyan text-[11px]">IMAGE EDITOR</div>
+            <div class="text-retro-muted text-[10px]">SLEMAN, ID</div>
+          </div>
+
+          <!-- Desktop Summary -->
+          <div class="hidden md:flex md:items-center justify-between gap-3">
+            <div class="flex items-center gap-3">
+              <span class="text-slate-300 font-bold text-sm tracking-wide">JUL 2025 - NOV 2025</span>
+            </div>
+            <div class="text-gray-200 uppercase font-bold text-xs">
+              PT Pippeline Technologies Indonesia
+            </div>
+            <div class="text-retro-cyan">
+              IMAGE EDITOR
+            </div>
+            <div class="text-retro-muted flex items-center justify-end gap-4">
+              <span>SLEMAN, ID</span>
+              <span class="font-pixel text-slate-300 text-sm group-open:rotate-45 transition-transform inline-block">+</span>
+            </div>
+          </div>
+        </summary>
+        <div class="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-retro-border/60 font-mono text-xs text-gray-300 leading-relaxed">
+          Edited and processed high-volume fashion and e-commerce product photos daily for global internet retailers, maintaining a fast-paced and time-sensitive production workflow.
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+<!-- END: ExperienceSection -->
+<!-- BEGIN: ContactSection -->
+<section class="py-16 md:py-24 border-b border-retro-border relative" id="contact">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <!-- Section Header -->
+    <div class="text-center mb-8 md:mb-14">
+      <h2 class="font-mono font-bold text-base sm:text-xl text-slate-100 inline-block px-5 sm:px-6 py-1.5 sm:py-2 border-2 border-slate-400 shadow-[4px_4px_0px_#334155] bg-retro-dark tracking-widest uppercase">
+        CONTACT
+      </h2>
+      <p class="font-silkscreen text-[11px] sm:text-xs text-retro-muted mt-3 sm:mt-4 uppercase tracking-wider">
+        // INITIATE HANDSHAKE TRANSMISSION
+      </p>
+    </div>
+    
+    <div class="flex flex-col lg:grid lg:grid-cols-12 gap-6 lg:gap-10 items-start">
+      <!-- Left Column: Friendly Inquiry Statement -->
+      <div class="w-full lg:col-span-5 flex flex-col gap-6">
+        <div class="bg-retro-dark border-2 border-retro-border p-4 sm:p-6 shadow-pixel-white">
+          <h3 class="font-mono font-bold text-xs sm:text-sm text-slate-200 uppercase tracking-wide leading-relaxed mb-3 sm:mb-4">
+            ARE YOU INTERESTED IN MY PORTFOLIO AND WANT TO TALK WITH ME?
+          </h3>
+          <p class="font-mono text-xs sm:text-sm text-gray-300 leading-relaxed mb-4 sm:mb-6">
+            WRITE YOUR MESSAGE. I WILL ANSWER AS SOON AS I CAN. 
+            WHETHER FOR FULL-TIME ROLES, HIGH-IMPACT FREELANCE PROJECTS, OR TECH DISCUSSIONS.
+          </p>
+          <div class="space-y-2.5 sm:space-y-3 font-silkscreen text-[11px] sm:text-xs">
+            <div class="p-2.5 sm:p-3 bg-retro-black border border-retro-border flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+              <span class="text-retro-muted">DIRECT EMAIL:</span>
+              <span class="text-retro-cyan select-all text-xs">bagasaditiya11@gmail.com</span>
+            </div>
+            <div class="p-2.5 sm:p-3 bg-retro-black border border-retro-border flex items-center justify-between">
+              <span class="text-retro-muted">RESPONSE TIME:</span>
+              <span class="text-retro-sage">&lt; 24 HOURS</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Right Column: Retro Interactive Form -->
+      <div class="w-full lg:col-span-7">
+        <form class="bg-retro-dark border-2 border-slate-400 p-4 sm:p-6 md:p-8 shadow-[4px_4px_0px_#334155] flex flex-col gap-4 sm:gap-6" id="contact-form">
+          <!-- Email Field -->
+          <div>
+            <label class="block font-silkscreen text-xs text-slate-300 uppercase mb-1.5 sm:mb-2 tracking-wider" for="contact-email">
+              EMAIL
+            </label>
+            <input class="w-full bg-retro-black border-2 border-retro-border focus:border-slate-300 focus:ring-0 text-white font-mono text-xs sm:text-sm px-3 sm:px-4 py-2.5 sm:py-3 placeholder-gray-600 transition-colors uppercase" id="contact-email" name="email" placeholder="EMAIL@EMAIL.COM" required="" type="email"/>
+          </div>
+          <!-- Message Field -->
+          <div>
+            <label class="block font-silkscreen text-xs text-slate-300 uppercase mb-1.5 sm:mb-2 tracking-wider" for="contact-message">
+              YOUR MESSAGE
+            </label>
+            <textarea class="w-full bg-retro-black border-2 border-retro-border focus:border-slate-300 focus:ring-0 text-white font-mono text-xs sm:text-sm px-3 sm:px-4 py-2.5 sm:py-3 placeholder-gray-600 transition-colors" id="contact-message" name="message" placeholder="WRITE YOUR MESSAGE HERE..." required="" rows="4"></textarea>
+          </div>
+          <!-- Submission Area -->
+          <div class="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 pt-1 sm:pt-2">
+            <button class="pixel-btn w-full sm:w-auto bg-slate-200 text-slate-900 font-pixel text-xs px-6 sm:px-8 py-3 sm:py-3.5 border-2 border-slate-900 shadow-[3px_3px_0px_#64748B] uppercase font-bold tracking-tight hover:bg-white" type="submit">
+              LET'S TALK
+            </button>
+            <span class="font-silkscreen text-xs text-retro-sage hidden" id="form-status">
+              ✓ TRANSMISSION SENT SUCCESSFULLY!
+            </span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- END: ContactSection -->
+    </main>
+    <!-- BEGIN: Footer -->
+<footer class="bg-retro-black py-8 border-t border-retro-border text-center font-silkscreen text-xs text-retro-muted relative z-10">
+  <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2.5 sm:gap-4 text-[10px] sm:text-xs font-silkscreen">
+    <div class="text-retro-muted">
+      COPYLEFT 2026 // ALL RIGHTS REVERSED
+    </div>
+    <!-- <div class="flex items-center gap-1 text-gray-400">
+      MADE BY <span class="text-retro-pink">♥</span> IN BERLIN
+    </div> -->
+    <div class="flex items-center gap-4 text-slate-300">
+      <a class="hover:underline" href="#hero">TOP ↑</a>
+    </div>
+  </div>
+</footer>
+<!-- END: Footer -->
+  </div>
+
+  <!-- BEGIN: InteractiveScripts -->
+  <script data-purpose="form-interactions">
+    // Form submission feedback simulation
+    const form = document.getElementById('contact-form');
+    const statusMsg = document.getElementById('form-status');
+
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        statusMsg.classList.remove('hidden');
+        form.reset();
+        setTimeout(() => {
+          statusMsg.classList.add('hidden');
+        }, 5000);
+      });
+    }
+  </script>
+<script data-purpose="animated-starfield">
+    // High-performance lightweight 8-bit Pixel Starfield and Particle Animation
+    (function initPixelStarfield() {
+      const canvas = document.getElementById('retro-starfield');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let width = 0;
+      let height = 0;
+      let stars = [];
+      const mouse = { x: -1000, y: -1000, targetX: -1000, targetY: -1000 };
+
+      // Palette of muted elegant tones matching existing design
+      const starColors = [
+        'rgba(226, 232, 240, ', // Slate 200
+        'rgba(148, 163, 184, ', // Slate 400
+        'rgba(56, 189, 248, ',  // Muted Cyan
+        'rgba(94, 234, 212, ',  // Soft Sage
+        'rgba(167, 139, 250, '  // Soft Purple
+      ];
+
+      function resize() {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+        initStars();
+      }
+
+      function initStars() {
+        const starCount = Math.floor((width * height) / 8000); // balanced density
+        stars = [];
+        for (let i = 0; i < starCount; i++) {
+          stars.push(createStar(Math.random() * height));
+        }
+      }
+
+      function createStar(initialY) {
+        const sizeRand = Math.random();
+        // Strict 8-bit discrete pixel sizes: 2px or 3px or 4px
+        const size = sizeRand > 0.85 ? 4 : (sizeRand > 0.5 ? 3 : 2);
+        const speed = 0.15 + Math.random() * 0.45;
+        const colorPrefix = starColors[Math.floor(Math.random() * starColors.length)];
+        return {
+          x: Math.floor(Math.random() * (width / size)) * size,
+          y: initialY !== undefined ? initialY : height + 10,
+          size: size,
+          baseSpeed: speed,
+          colorPrefix: colorPrefix,
+          twinkleSpeed: 0.02 + Math.random() * 0.04,
+          twinklePhase: Math.random() * Math.PI * 2,
+          driftX: (Math.random() - 0.5) * 0.15,
+          isCross: Math.random() > 0.88 // occasional 8-bit cross-shaped twinkle star
+        };
+      }
+
+      // Smooth mouse tracking for subtle cosmic parallax / particle push
+      window.addEventListener('mousemove', (e) => {
+        mouse.targetX = e.clientX;
+        mouse.targetY = e.clientY;
+      });
+
+      window.addEventListener('mouseleave', () => {
+        mouse.targetX = -1000;
+        mouse.targetY = -1000;
+      });
+
+      function render() {
+        // Linear interpolation for mouse pos
+        mouse.x += (mouse.targetX - mouse.x) * 0.05;
+        mouse.y += (mouse.targetY - mouse.y) * 0.05;
+
+        ctx.clearRect(0, 0, width, height);
+
+        for (let i = 0; i < stars.length; i++) {
+          const star = stars[i];
+
+          // Star vertical floating motion
+          star.y -= star.baseSpeed;
+          star.x += star.driftX;
+          star.twinklePhase += star.twinkleSpeed;
+
+          // Subtle interactive deflection from cursor
+          const dx = star.x - mouse.x;
+          const dy = star.y - mouse.y;
+          const distSq = dx * dx + dy * dy;
+          if (distSq < 14400 && distSq > 0) { // within 120px
+            const force = (120 - Math.sqrt(distSq)) / 120;
+            star.x += (dx / Math.sqrt(distSq)) * force * 1.5;
+            star.y += (dy / Math.sqrt(distSq)) * force * 1.5;
+          }
+
+          // Screen wrapping
+          if (star.y < -10) {
+            stars[i] = createStar();
+            continue;
+          }
+          if (star.x < 0) star.x = width;
+          if (star.x > width) star.x = 0;
+
+          // Pixel snap to maintain crisp retro aesthetics
+          const px = Math.floor(star.x);
+          const py = Math.floor(star.y);
+          const alpha = 0.2 + (Math.sin(star.twinklePhase) * 0.5 + 0.5) * 0.65;
+
+          ctx.fillStyle = star.colorPrefix + alpha.toFixed(3) + ')';
+
+          if (star.isCross && star.size >= 3) {
+            // 8-bit cross star shape
+            const s = star.size;
+            ctx.fillRect(px, py - s, s, s * 3);
+            ctx.fillRect(px - s, py, s * 3, s);
+          } else {
+            // Crisp square pixel
+            ctx.fillRect(px, py, star.size, star.size);
+          }
+        }
+
+        requestAnimationFrame(render);
+      }
+
+      window.addEventListener('resize', resize);
+      resize();
+      render();
+    })();
+  </script>
+  <!-- END: InteractiveScripts -->
+</body>
+</html>
