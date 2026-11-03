@@ -607,23 +607,23 @@
           <!-- Email Field -->
           <div>
             <label class="block font-silkscreen text-xs text-slate-300 uppercase mb-1.5 sm:mb-2 tracking-wider" for="contact-email">
-              EMAIL
+              EMAIL <span class="text-retro-cyan" aria-hidden="true">*</span>
             </label>
-            <input class="w-full bg-retro-black border-2 border-retro-border focus:border-slate-300 focus:ring-0 text-white font-mono text-xs sm:text-sm px-3 sm:px-4 py-2.5 sm:py-3 placeholder-gray-600 transition-colors uppercase" id="contact-email" name="email" placeholder="EMAIL@EMAIL.COM" required="" type="email"/>
+            <input class="w-full bg-retro-black border-2 border-retro-border focus:border-slate-300 focus:outline-none focus:ring-2 focus:ring-retro-cyan focus:ring-offset-2 focus:ring-offset-retro-dark text-white font-mono text-xs sm:text-sm px-3 sm:px-4 py-2.5 sm:py-3 placeholder-gray-600 transition-colors uppercase" id="contact-email" name="email" placeholder="EMAIL@EMAIL.COM" required="" type="email"/>
           </div>
           <!-- Message Field -->
           <div>
             <label class="block font-silkscreen text-xs text-slate-300 uppercase mb-1.5 sm:mb-2 tracking-wider" for="contact-message">
-              YOUR MESSAGE
+              YOUR MESSAGE <span class="text-retro-cyan" aria-hidden="true">*</span>
             </label>
-            <textarea class="w-full bg-retro-black border-2 border-retro-border focus:border-slate-300 focus:ring-0 text-white font-mono text-xs sm:text-sm px-3 sm:px-4 py-2.5 sm:py-3 placeholder-gray-600 transition-colors" id="contact-message" name="message" placeholder="WRITE YOUR MESSAGE HERE..." required="" rows="4"></textarea>
+            <textarea class="w-full bg-retro-black border-2 border-retro-border focus:border-slate-300 focus:outline-none focus:ring-2 focus:ring-retro-cyan focus:ring-offset-2 focus:ring-offset-retro-dark text-white font-mono text-xs sm:text-sm px-3 sm:px-4 py-2.5 sm:py-3 placeholder-gray-600 transition-colors" id="contact-message" name="message" placeholder="WRITE YOUR MESSAGE HERE..." required="" rows="4"></textarea>
           </div>
           <!-- Submission Area -->
           <div class="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 pt-1 sm:pt-2">
-            <button class="pixel-btn w-full sm:w-auto bg-slate-200 text-slate-900 font-pixel text-xs px-6 sm:px-8 py-3 sm:py-3.5 border-2 border-slate-900 shadow-[3px_3px_0px_#64748B] uppercase font-bold tracking-tight hover:bg-white" type="submit">
+            <button class="pixel-btn w-full sm:w-auto bg-slate-200 text-slate-900 font-pixel text-xs px-6 sm:px-8 py-3 sm:py-3.5 border-2 border-slate-900 shadow-[3px_3px_0px_#64748B] uppercase font-bold tracking-tight hover:bg-white focus:outline-none focus:ring-2 focus:ring-retro-cyan focus:ring-offset-2 focus:ring-offset-retro-dark disabled:opacity-70 disabled:cursor-not-allowed" id="submit-btn" type="submit">
               LET'S TALK
             </button>
-            <span class="font-silkscreen text-xs text-retro-sage hidden" id="form-status">
+            <span class="font-silkscreen text-xs text-retro-sage hidden" id="form-status" role="status" aria-live="polite">
               ✓ TRANSMISSION SENT SUCCESSFULLY!
             </span>
           </div>
@@ -656,15 +656,31 @@
     // Form submission feedback simulation
     const form = document.getElementById('contact-form');
     const statusMsg = document.getElementById('form-status');
+    const submitBtn = document.getElementById('submit-btn');
 
     if (form) {
       form.addEventListener('submit', (e) => {
         e.preventDefault();
-        statusMsg.classList.remove('hidden');
-        form.reset();
+
+        // Disable button and show loading state
+        const originalText = submitBtn.innerText;
+        submitBtn.disabled = true;
+        submitBtn.innerText = 'TRANSMITTING...';
+
+        // Simulate network request
         setTimeout(() => {
-          statusMsg.classList.add('hidden');
-        }, 5000);
+          statusMsg.classList.remove('hidden');
+          form.reset();
+
+          // Restore button state
+          submitBtn.disabled = false;
+          submitBtn.innerText = originalText;
+
+          // Hide success message after delay
+          setTimeout(() => {
+            statusMsg.classList.add('hidden');
+          }, 5000);
+        }, 800); // 800ms loading simulation
       });
     }
   </script>
