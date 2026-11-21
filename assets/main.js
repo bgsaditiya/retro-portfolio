@@ -1,6 +1,17 @@
 (() => {
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // Prevent spurious micro-scroll offset (e.g. font swap / scroll anchoring) on reload at top
+  if (!window.location.hash) {
+    const resetTopJitter = () => {
+      if (window.scrollY > 0 && window.scrollY < 100) {
+        window.scrollTo({ top: 0, behavior: 'instant' });
+      }
+    };
+    resetTopJitter();
+    window.addEventListener('load', resetTopJitter, { once: true });
+  }
+
   // 1. Scroll progress fallback when CSS Scroll-Driven Animations are unsupported
   const progressBar = document.getElementById('scroll-progress');
   if (progressBar && !prefersReducedMotion && !CSS.supports('animation-timeline', 'scroll()')) {

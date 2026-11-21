@@ -449,6 +449,7 @@ textarea {
   display: flex;
   flex-direction: column;
   overflow: clip;
+  overflow-anchor: none;
 }
 
 .hero-stage > .container {
