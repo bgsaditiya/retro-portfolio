@@ -443,18 +443,30 @@ textarea {
   position: relative;
   background: var(--color-pink);
   color: var(--color-surface);
-  padding-block: clamp(1.5rem, 3.5vw, 2.75rem) 0;
+  min-height: calc(100vh - 4.25rem);
+  min-height: calc(100dvh - 4.25rem);
+  padding-block: clamp(1.25rem, 3vh, 2.5rem) 0;
+  display: flex;
+  flex-direction: column;
   overflow: clip;
+}
+
+.hero-stage > .container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .hero-stack {
   max-width: 58rem;
   margin-inline: auto;
+  margin-block: auto;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: clamp(0.85rem, 1.8vw, 1.35rem);
+  gap: clamp(0.85rem, 1.8vh, 1.35rem);
   position: relative;
   z-index: 3;
 }
@@ -517,7 +529,7 @@ textarea {
 .hero-title {
   margin: 0;
   font-size: var(--text-display);
-  font-weight: 400;
+  font-weight: 800;
   font-variation-settings: "opsz" 96, "wdth" 88;
   line-height: 0.85;
   letter-spacing: -0.017em;
@@ -573,11 +585,10 @@ textarea {
 /* Peeking Mascot & Confetti Stage */
 .hero-illustration-wrap {
   position: relative;
-  margin-top: clamp(1.25rem, 2.5vw, 2rem);
+  margin-top: clamp(1rem, 2.5vh, 2rem);
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  min-height: clamp(10.5rem, 18vw, 14.5rem);
 }
 
 .mascot-btn {
