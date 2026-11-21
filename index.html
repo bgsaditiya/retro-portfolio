@@ -1,812 +1,582 @@
 <!DOCTYPE html>
-<html class="scroll-smooth" lang="en">
+<html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>bgsaditiya_ // Full-Stack Developer</title>
-  <meta name="description" content="bgsaditiya_ // Full-Stack Developer. Build scalable web, mobile apps, and pixel-perfect digital experiences."/>
-  <meta name="theme-color" content="#0a0d12"/>
-  <meta property="og:title" content="bgsaditiya_ // Full-Stack Developer"/>
-  <meta property="og:description" content="Full-Stack Developer portfolio with solid code architecture and pixel-perfect design."/>
-  <meta property="og:type" content="website"/>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%230a0d12'/%3E%3Crect x='2' y='2' width='12' height='12' fill='%23121720' stroke='%2338bdf8' stroke-width='1'/%3E%3Ctext x='8' y='12' font-family='monospace' font-size='9' font-weight='bold' fill='%23e2e8f0' text-anchor='middle'%3EB%3C/text%3E%3C/svg%3E"/>
-
-  <!-- Google Fonts for Retro Pixel & Monospace Aesthetics -->
-  <link href="https://fonts.googleapis.com" rel="preconnect"/>
-  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@300;400;500;600;700&amp;family=Press+Start+2P&amp;family=Silkscreen:wght@400;700&amp;family=Space+Mono:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet"/>
-
-  <!-- Tailwind CSS CDN with plugins -->
-  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-
-  <!-- Tailwind Configuration -->
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            retro: {
-              black: '#0a0d12',
-              dark: '#121720',
-              card: '#161d28',
-              accent: '#E2E8F0', // elegant light slate / silver accent
-              accentSubtle: '#94A3B8',
-              sage: '#5EEAD4', // subtle mint / sage
-              lime: '#4ADE80',
-              cyan: '#38BDF8',
-              pink: '#F472B6',
-              purple: '#A78BFA',
-              muted: '#64748B',
-              border: '#273548'
-            }
-          },
-          fontFamily: {
-            pixel: ['"Press Start 2P"', 'monospace'],
-            silkscreen: ['"Silkscreen"', 'monospace'],
-            mono: ['"Space Mono"', '"JetBrains Mono"', 'monospace'],
-            code: ['"JetBrains Mono"', 'monospace']
-          },
-          boxShadow: {
-            'pixel-accent': '4px 4px 0px #94A3B8',
-            'pixel-accent-sm': '2px 2px 0px #64748B',
-            'pixel-purple': '4px 4px 0px #A78BFA',
-            'pixel-cyan': '4px 4px 0px #38BDF8',
-            'pixel-white': '4px 4px 0px #CBD5E1',
-            'pixel-hover': '5px 5px 0px #E2E8F0'
-          }
-        }
-      }
-    }
-  </script>
-
-  <!-- BEGIN: Custom Retro Styles -->
-  <style data-purpose="background-matrix">
-    /* Animated subtle dot matrix + grid background */
-    @keyframes moveRetroGrid {
-      0% {
-        background-position: 0 0, 16px 16px, 0 0;
-      }
-      100% {
-        background-position: 0 64px, 16px 80px, 0 64px;
-      }
-    }
-
-    .animated-retro-matrix {
-      background-color: #0a0d12;
-      background-image: 
-        radial-gradient(rgba(148, 163, 184, 0.14) 1px, transparent 1px),
-        radial-gradient(rgba(56, 189, 248, 0.08) 1px, transparent 1px),
-        linear-gradient(rgba(39, 53, 72, 0.07) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(39, 53, 72, 0.07) 1px, transparent 1px);
-      background-size: 32px 32px, 32px 32px, 64px 64px, 64px 64px;
-      animation: moveRetroGrid 28s linear infinite;
-    }
-
-    /* Scanline overlay for vintage CRT feel */
-    .crt-scanlines {
-      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.22) 50%);
-      background-size: 100% 4px;
-    }
-  </style>
-<style data-purpose="pixel-components">
-    /* Pixel border and buttons with refined slate/silver palette */
-    .pixel-box {
-      border: 2px solid #94A3B8;
-      box-shadow: 4px 4px 0px #334155;
-    }
-
-    .pixel-box-purple {
-      border: 2px solid #A78BFA;
-      box-shadow: 4px 4px 0px #5B21B6;
-    }
-
-    .pixel-box-cyan {
-      border: 2px solid #38BDF8;
-      box-shadow: 4px 4px 0px #0369A1;
-    }
-
-    .pixel-box-dark {
-      border: 2px solid #273548;
-      box-shadow: 4px 4px 0px #0e131b;
-    }
-
-    .pixel-btn {
-      transition: all 0.15s ease-in-out;
-      image-rendering: pixelated;
-    }
-
-    .pixel-btn:hover {
-      transform: translate(-2px, -2px);
-      box-shadow: 5px 5px 0px #E2E8F0;
-    }
-
-    .pixel-btn:active {
-      transform: translate(2px, 2px);
-      box-shadow: 1px 1px 0px #94A3B8;
-    }
-
-    /* Custom pixel blinking animation */
-    @keyframes pixelBlink {
-      0%, 49% { opacity: 1; }
-      50%, 100% { opacity: 0; }
-    }
-
-    .cursor-blink {
-      animation: pixelBlink 1s infinite;
-    }
-
-    /* Pixel art canvas rendering crispness */
-    .pixelated-art {
-      image-rendering: pixelated;
-      image-rendering: crisp-edges;
-    }
-
-        @keyframes avatarFloat {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-4px); }
-    }
-    @keyframes eyeBlink {
-      0%, 93%, 100% { transform: scaleY(1); }
-      96% { transform: scaleY(0.1); }
-    }
-    @keyframes laptopGlow {
-      0%, 100% { fill: #38BDF8; }
-      35% { fill: #5EEAD4; }
-      70% { fill: #60A5FA; }
-    }
-    @keyframes typeL {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-1px); }
-    }
-    @keyframes typeR {
-      0%, 100% { transform: translateY(-1px); }
-      50% { transform: translateY(0); }
-    }
-    .avatar-animated { animation: avatarFloat 2.6s ease-in-out infinite; }
-    .pixel-eyes { transform-box: fill-box; transform-origin: center; animation: eyeBlink 3.8s infinite; }
-    .pixel-screen { animation: laptopGlow 2.2s steps(3) infinite; }
-    .pixel-hand-l { animation: typeL 0.3s steps(2) infinite; }
-    .pixel-hand-r { animation: typeR 0.3s steps(2) infinite; }
-  </style>
-  <!-- END: Custom Retro Styles -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bagas Aditia — Full-Stack Software Engineer</title>
+  <meta name="description" content="Bagas Aditia — Full-Stack Developer crafting enterprise healthcare systems (SIMRS & EMR), API integrations, and motion-driven web & mobile experiences.">
+  <meta name="theme-color" content="#e11d74">
+  <meta property="og:title" content="Bagas Aditia — Full-Stack Software Engineer">
+  <meta property="og:description" content="Full-Stack Developer building resilient healthcare systems and expressive digital products.">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23e11d74'/%3E%3Crect x='5' y='5' width='22' height='22' rx='6' fill='%23ffffff' stroke='%230b0b10' stroke-width='2'/%3E%3Ctext x='16' y='21' font-family='system-ui,sans-serif' font-size='14' font-weight='800' fill='%230b0b10' text-anchor='middle'%3EB%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+  <script src="assets/main.js" defer></script>
 </head>
-<body class="bg-retro-black text-gray-200 font-mono relative min-h-screen selection:bg-slate-300 selection:text-black overflow-x-hidden">
-  <!-- BEGIN: Dynamic Ambient Retro Canvas & Grid Layers -->
-<div class="fixed inset-0 pointer-events-none z-0">
-  <!-- Moving Retro Matrix / Dot Grid -->
-  <div class="absolute inset-0 animated-retro-matrix"></div>
-  <!-- Interactive & Ambient 8-Bit Pixel Stars Canvas -->
-  <canvas class="absolute inset-0 w-full h-full pixelated-art" id="retro-starfield"></canvas>
-  <!-- Subtle CRT Scanlines -->
-  <div class="absolute inset-0 crt-scanlines opacity-40"></div>
-</div>
-<!-- END: Dynamic Ambient Retro Canvas & Grid Layers -->
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="scroll-progress" class="scroll-progress" aria-hidden="true"></div>
 
-  <div class="relative z-10 flex flex-col min-h-screen">
-    <!-- BEGIN: SiteHeader -->
-<header class="sticky top-0 z-50 bg-retro-black/95 backdrop-blur border-b-2 border-retro-border">
-  <div class="max-w-6xl mx-auto px-3 sm:px-6 py-3 sm:py-4 flex items-center justify-between">
-    <!-- Brand Logo in 8-Bit Typography -->
-    <a class="flex items-center gap-2 sm:gap-3 group" href="#hero">
-      <div class="bg-slate-200 text-slate-900 font-pixel text-xs sm:text-lg px-2 sm:px-2.5 py-1 sm:py-1.5 shadow-[2px_2px_0px_#64748B] sm:shadow-[3px_3px_0px_#64748B] tracking-tighter group-hover:bg-retro-cyan transition-colors">
-        B
+  <!-- Right-edge vertical rail badge (decorative status, separate from CTAs) -->
+  <div class="edge-rail" aria-hidden="true">OPEN TO WORK · ID #00256</div>
+
+  <!-- Header Chrome -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand-mark" href="#hero" aria-label="Bagas Aditia home">
+        <span class="brand-badge" aria-hidden="true">B.</span>
+        <span class="brand-word">bgsaditiya</span>
+      </a>
+
+      <nav class="primary-nav" aria-label="Primary">
+        <ul>
+          <li><a href="#craft">Capabilities</a></li>
+          <li><a href="#about">Story</a></li>
+          <li><a href="#experience">Experience</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a class="pill-btn pill-btn--white pill-btn--sm" href="#contact">Let's Talk</a>
+        <button
+          id="menu-toggle"
+          class="menu-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+          aria-label="Toggle navigation menu"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+            <line x1="4" y1="7" x2="20" y2="7"></line>
+            <line x1="4" y1="12" x2="20" y2="12"></line>
+            <line x1="4" y1="17" x2="20" y2="17"></line>
+          </svg>
+        </button>
       </div>
-      <div class="flex flex-col">
-        <span class="font-pixel text-[10px] sm:text-xs tracking-wider text-slate-200 group-hover:text-retro-cyan transition-colors">.DEV</span>
-        <!-- <span class="text-[9px] text-retro-muted font-silkscreen md:hidden">LVL 99</span>
-        <span class="text-[10px] text-retro-muted font-silkscreen hidden md:inline-block">LEVEL 99 CODER</span> -->
-      </div>
-    </a>
-    
-    <!-- Mobile Navigation Links (Screen 2: Mobile Responsive) -->
-    <nav class="flex md:hidden items-center gap-2 sm:gap-4 font-silkscreen text-[10px] sm:text-xs uppercase tracking-wider">
-      <a class="text-gray-400 hover:text-slate-100 transition-colors" href="#about">ABOUT</a>
-      <a class="text-gray-400 hover:text-slate-100 transition-colors" href="#experience">Experience</a>
-      <!-- <a class="text-gray-400 hover:text-slate-100 transition-colors" href="#projects">WORKS</a> -->
+    </div>
+
+    <nav id="mobile-nav" class="mobile-drawer" aria-label="Mobile" hidden>
+      <ul>
+        <li><a href="#craft">Capabilities</a></li>
+        <li><a href="#about">Origin Story</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#contact">FAQ &amp; Contact</a></li>
+      </ul>
     </nav>
+  </header>
 
-    <!-- Desktop Navigation Links (Screen 1: Desktop Animated) -->
-    <nav class="hidden md:flex items-center gap-7 font-silkscreen text-xs uppercase tracking-wider">
-      <a class="text-gray-400 hover:text-slate-100 transition-colors flex items-center gap-1" href="#about">
-        <span class="text-slate-400 opacity-70">#</span> About
-      </a>
-      <!-- <a class="text-gray-400 hover:text-slate-100 transition-colors flex items-center gap-1" href="#skills">
-        <span class="text-slate-400 opacity-70">#</span> Skills
-      </a> -->
-      <a class="text-gray-400 hover:text-slate-100 transition-colors flex items-center gap-1" href="#experience">
-        <span class="text-slate-400 opacity-70">#</span> Experience
-      </a>
-      <!-- <a class="text-gray-400 hover:text-slate-100 transition-colors flex items-center gap-1" href="#projects">
-        <span class="text-slate-400 opacity-70">#</span> Works
-      </a> -->
-      <a class="text-gray-400 hover:text-slate-100 transition-colors flex items-center gap-1" href="#contact">
-        <span class="text-slate-400 opacity-70">#</span> Contact
-      </a>
-    </nav>
+  <main id="main-content" tabindex="-1">
+    <!-- CHAPTER 1: HERO STAGE (Hot Pink Poster) -->
+    <section class="hero-stage" id="hero">
+      <!-- Confetti & Lightning Illustration Layer -->
+      <svg class="hero-confetti" viewBox="0 0 1440 720" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <path d="M130 140 L155 110 L145 148 L175 142 L135 190 L148 154 Z" fill="#facc15" stroke="#0b0b10" stroke-width="3" stroke-linejoin="round"/>
+        <circle cx="240" cy="480" r="14" fill="#22d3ee" stroke="#0b0b10" stroke-width="3"/>
+        <rect x="1180" y="130" width="26" height="26" rx="6" transform="rotate(22 1180 130)" fill="#a3e635" stroke="#0b0b10" stroke-width="3"/>
+        <path d="M1285 430 L1309 395 L1300 435 L1330 428 L1291 478 L1303 442 Z" fill="#a855f7" stroke="#0b0b10" stroke-width="3" stroke-linejoin="round"/>
+        <path d="M170 590 C195 565, 225 565, 248 590" fill="none" stroke="#b8ff3b" stroke-width="6" stroke-linecap="round"/>
+        <path d="M1195 560 L1215 585 M1215 560 L1195 585" stroke="#22d3ee" stroke-width="6" stroke-linecap="round"/>
+      </svg>
 
-    <!-- Primary Action Button (Screen 1 & 2 responsive) -->
-    <div class="flex items-center gap-2 sm:gap-3">
-      <a class="pixel-btn inline-block bg-slate-200 text-slate-900 font-pixel text-[9px] sm:text-[11px] px-2.5 sm:px-4 py-1.5 sm:py-2.5 shadow-[2px_2px_0px_#64748B] sm:shadow-[3px_3px_0px_#64748B] border border-slate-900 sm:border-2 uppercase font-bold tracking-tight hover:bg-white" href="#contact">
-        <span class="md:hidden">TALK</span>
-        <span class="hidden md:inline">LET'S TALK</span>
-      </a>
-    </div>
-  </div>
-</header>
-<!-- END: SiteHeader -->
-    <main class="flex-grow">
-      <!-- BEGIN: HeroSection -->
-<section class="relative pt-10 sm:pt-12 pb-16 sm:pb-20 md:py-24 border-b border-retro-border overflow-hidden" id="hero">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6">
-    <div class="flex flex-col lg:grid lg:grid-cols-12 gap-8 lg:gap-10 items-center">
-      
-      <!-- Left: Hero Text & Badges -->
-      <div class="w-full lg:col-span-7 flex flex-col gap-4 lg:gap-6 text-center lg:text-left items-center lg:items-start">
-        <div class="inline-flex items-center gap-2 px-2.5 sm:px-3 py-1 bg-retro-dark border border-retro-border w-max text-retro-sage font-silkscreen text-[11px] sm:text-xs shadow-pixel-accent-sm">
-          <span class="inline-block w-2 sm:w-2.5 h-2 sm:h-2.5 bg-retro-sage animate-pulse"></span>
-          SYSTEM ONLINE // READY TO CODE
-        </div>
-        
-        <h1 class="font-mono text-2xl sm:text-4xl md:text-5xl font-bold text-slate-100 tracking-tight leading-tight">
-          BAGAS ADITIA
-        </h1>
-        
-        <div class="font-mono text-xs sm:text-sm font-medium tracking-wider text-retro-cyan leading-relaxed flex items-center justify-center lg:justify-start gap-1.5 flex-wrap">
-          <span class="hidden sm:inline">&gt; FULL-STACK ARCHITECT &amp; RETRO ENTHUSIAST</span>
-          <span class="sm:hidden">&gt; FULL-STACK ARCHITECT &amp; RETRO DEV</span>
-          <span class="inline-block w-2 h-3 sm:h-4 bg-retro-cyan cursor-blink"></span>
-        </div>
-        
-        <p class="font-mono text-slate-300 text-xs sm:text-sm leading-relaxed max-w-xl font-normal">
-          I'm a software developer with a lifelong passion for programming. Since scripting in early mIRC bot days, I build intuitive, scalable web &amp; mobile experiences with solid code architecture and pixel-perfect design integrity.
-        </p>
-        
-        <!-- Constellation Tech Icons -->
-        <div class="pt-1 lg:pt-2 flex flex-wrap justify-center lg:justify-start gap-2 sm:gap-2.5 text-[11px] sm:text-xs font-silkscreen">
-          <span class="bg-retro-card border border-retro-cyan/60 text-retro-cyan px-2 sm:px-2.5 py-0.5 sm:py-1 shadow-[2px_2px_0px_#1e293b]">
-            ⚛ REACT
-          </span>
-          <span class="bg-retro-card border border-retro-sage/60 text-retro-sage px-2 sm:px-2.5 py-0.5 sm:py-1 shadow-[2px_2px_0px_#1e293b]">
-            ⬢ NODE.JS
-          </span>
-          <span class="bg-retro-card border border-slate-400 text-slate-200 px-2 sm:px-2.5 py-0.5 sm:py-1 shadow-[2px_2px_0px_#1e293b]">
-            JS TYPESCRIPT
-          </span>
-          <span class="bg-retro-card border border-retro-purple/60 text-retro-purple px-2 sm:px-2.5 py-0.5 sm:py-1 shadow-[2px_2px_0px_#1e293b]">
-            ▲ NEXT.JS
-          </span>
-          <span class="bg-retro-card border border-retro-pink/60 text-retro-pink px-2 sm:px-2.5 py-0.5 sm:py-1 shadow-[2px_2px_0px_#1e293b]">
-            ♨ GRAPHQL
-          </span>
-        </div>
-        
-        <!-- Hero Action Buttons -->
-        <div class="flex flex-wrap justify-center lg:justify-start items-center gap-3 sm:gap-4 pt-2 lg:pt-3 w-full">
-          <a class="pixel-btn flex-1 sm:flex-initial text-center bg-slate-200 text-slate-900 font-pixel text-[11px] sm:text-xs px-4 sm:px-5 py-2.5 sm:py-3 border-2 border-slate-900 shadow-[3px_3px_0px_#64748B] hover:bg-white" href="#about">
-            ABOUT ME
-          </a>
-          <a class="pixel-btn flex-1 sm:flex-initial text-center bg-retro-dark hover:bg-retro-card text-gray-200 font-pixel text-[11px] sm:text-xs px-4 sm:px-5 py-2.5 sm:py-3 border-2 border-retro-border hover:border-slate-300 shadow-[3px_3px_0px_#FFFFFF]" href="#contact">
-            CONTACT ME
-          </a>
-        </div>
-      </div>
-      
-      <!-- Right: Pixel Character / Avatar Showcase Frame -->
-      <div class="w-full max-w-xs sm:max-w-sm lg:col-span-5 flex justify-center">
-        <div class="relative w-full">
-          <!-- Retro Box Frame Header -->
-          <div class="bg-retro-card border-2 border-slate-400 shadow-[4px_4px_0px_#334155] p-3 sm:p-4 relative">
-            <div class="flex items-center justify-between pb-2 sm:pb-3 mb-2 sm:mb-3 border-b-2 border-retro-border font-silkscreen text-[11px] sm:text-xs text-slate-300">
-              <span class="flex items-center gap-1.5">
-                <span class="w-2 sm:w-2.5 h-2 sm:h-2.5 bg-slate-300 inline-block"></span>
-                AVATAR.EXE
-              </span>
-              <span class="text-retro-muted">ID: #00256</span>
-            </div>
-            
-            <!-- Pixel Art Display Canvas -->
-            <div class="bg-retro-black border-2 border-retro-border p-3 sm:p-4 flex flex-col items-center justify-center relative overflow-hidden">
-              <div class="absolute inset-0 opacity-15 bg-[radial-gradient(#94a3b8_1px,transparent_1px)] [background-size:8px_8px]"></div>
-              
-              <!-- 8-Bit Pixel Character SVG -->
-              <svg class="w-40 h-40 sm:w-52 sm:h-52 pixelated-art drop-shadow-[0_8px_16px_rgba(148,163,184,0.12)] relative z-10 avatar-animated" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <!-- Headphone Band -->
-                <rect x="8" y="2" width="8" height="2" fill="#38BDF8"/>
-                <rect x="6" y="3" width="2" height="3" fill="#38BDF8"/>
-                <rect x="16" y="3" width="2" height="3" fill="#38BDF8"/>
-                <!-- Hair -->
-                <rect x="8" y="4" width="8" height="3" fill="#3B2F2F"/>
-                <rect x="7" y="5" width="10" height="3" fill="#3B2F2F"/>
-                <!-- Headphone Earcups -->
-                <rect x="5" y="6" width="2" height="4" fill="#0284C7"/>
-                <rect x="17" y="6" width="2" height="4" fill="#0284C7"/>
-                <!-- Face -->
-                <rect x="7" y="7" width="10" height="5" fill="#F4CCA1"/>
-                <g class="pixel-eyes">
-                  <rect x="8" y="8" width="2" height="2" fill="#1A1818"/>
-                  <rect x="14" y="8" width="2" height="2" fill="#1A1818"/>
-                </g>
-                <rect x="10" y="11" width="4" height="1" fill="#E8B88B"/>
-                <!-- Dark Hoodie -->
-                <rect x="6" y="12" width="12" height="6" fill="#1E293B"/>
-                <rect x="9" y="12" width="6" height="5" fill="#334155"/>
-                <!-- Glowing Pixel Laptop with Cursor -->
-                <rect x="7" y="14" width="10" height="4" fill="#090D16"/>
-                <rect class="pixel-screen" x="8" y="14" width="8" height="3" fill="#38BDF8"/>
-                <rect class="cursor-blink" x="13" y="15" width="1" height="1" fill="#FFFFFF"/>
-                <rect x="6" y="18" width="12" height="1" fill="#94A3B8"/>
-                <!-- Animated Hands -->
-                <rect class="pixel-hand-l" x="6" y="17" width="2" height="1" fill="#F4CCA1"/>
-                <rect class="pixel-hand-r" x="16" y="17" width="2" height="1" fill="#F4CCA1"/>
-                <!-- Legs -->
-                <rect x="8" y="19" width="3" height="4" fill="#0F172A"/>
-                <rect x="13" y="19" width="3" height="4" fill="#0F172A"/>
-              </svg>
-              
-              <div class="mt-2 sm:mt-3 w-full bg-retro-card border border-retro-border py-1 sm:py-1.5 px-2.5 sm:px-3 flex justify-between items-center font-silkscreen text-[10px] sm:text-[11px]">
-                <span class="text-retro-muted">CLASS:</span>
-                <span class="text-slate-200 font-bold">FULL-STACK ROGUE</span>
-              </div>
-            </div>
-            
-            <!-- Quick Status Footer on Card -->
-            <div class="mt-2 sm:mt-3 flex items-center justify-between text-[10px] sm:text-[11px] font-silkscreen text-retro-muted">
-              <span>EXP: +2 YEARS</span>
-              <span class="text-retro-sage flex items-center gap-1">
-                <span class="w-1.5 h-1.5 bg-retro-sage inline-block"></span>
-                <span class="hidden sm:inline">COFFEE_POWER: 100%</span>
-                <span class="sm:hidden">COFFEE: 100%</span>
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-    </div>
-  </div>
-</section>
-<!-- END: HeroSection -->
-      <!-- BEGIN: AboutMeSection -->
-<section class="py-16 md:py-24 border-b border-retro-border" id="about">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6">
-    <!-- Section Header with refined outline -->
-    <div class="text-center mb-8 md:mb-14">
-      <h2 class="font-mono font-bold text-base sm:text-xl text-slate-100 inline-block relative px-5 sm:px-6 py-1.5 sm:py-2 border-2 border-slate-400 shadow-[4px_4px_0px_#334155] bg-retro-dark tracking-widest uppercase">
-        ABOUT ME
-      </h2>
-      <p class="font-silkscreen text-[11px] sm:text-xs text-retro-muted mt-3 sm:mt-4 uppercase tracking-wider">
-        // ORIGIN STORY &amp; PASSION FOR CODE
-      </p>
-    </div>
-    
-    <div class="flex flex-col lg:grid lg:grid-cols-12 gap-6 lg:gap-8 items-start">
-      <!-- Left: Narrative Details & Stats -->
-      <div class="w-full lg:col-span-7 bg-retro-dark border-2 border-retro-border p-4 sm:p-6 md:p-8 relative shadow-pixel-white">
-        <div class="flex items-center gap-2 mb-3 sm:mb-4 text-xs font-silkscreen text-retro-cyan">
-          <span class="text-slate-300">&gt;</span> BIO_TERMINAL: READ_ONLY
-        </div>
-        <div class="space-y-3 sm:space-y-4 font-mono text-xs sm:text-sm leading-relaxed text-gray-300">
-          <p>
-            <strong class="text-slate-100 font-bold">A detail-oriented Software Engineer with a solid background in healthcare technology and digital asset production.</strong> Proven track record in developing and optimizing enterprise-scale Hospital Information Systems (SIMRS) and Electronic Medical Records (EMR) at both regional public hospitals and top health-tech vendors like PT Jasamedika Saranatama. Adept at handling complex system integrations, including BPJS and SatuSehat APIs.
-          </p>
-          <p>
-            Combining a strong technical development foundation with a sharp eye for detail developed during an earlier tenure as a Photo Editor at PT Pippeline Technologies Indonesia, bringing a unique blend of technical precision and visual excellence to software projects.
-          </p>
-        </div>
-      </div>
-      
-      <!-- Right: Social Links & Tech Focus Card -->
-      <div class="w-full lg:col-span-5 flex flex-col gap-4 sm:gap-6">
-        <div class="bg-retro-dark border-2 border-slate-400 p-4 sm:p-6 shadow-[4px_4px_0px_#334155]">
-          <h3 class="font-mono font-bold text-xs text-slate-200 mb-3 sm:mb-4 uppercase tracking-wider">
-            STATUS &amp; PROFILES
-          </h3>
-          <div class="flex flex-col divide-y divide-retro-border font-silkscreen text-[11px] sm:text-xs">
-            <div class="py-2.5 sm:py-3 flex justify-between items-center">
-              <span class="text-retro-muted">LOCATION:</span>
-              <span class="text-gray-200">TRENGGALEK, ONSITE &amp; REMOTE</span>
-            </div>
-            <div class="py-2.5 sm:py-3 flex justify-between items-center">
-              <span class="text-retro-muted">STATUS:</span>
-              <span class="text-retro-sage font-bold">AVAILABLE FOR WORK</span>
-            </div>
-            <div class="py-2.5 sm:py-3 flex justify-between items-center">
-              <span class="text-retro-muted">GITHUB:</span>
-              <a class="text-retro-cyan hover:underline flex items-center gap-1" href="https://github.com/bgsaditiya" rel="noopener noreferrer" target="_blank">
-                github.com/bgsaditiya ↗
-              </a>
-            </div>
-            <div class="py-2.5 sm:py-3 flex justify-between items-center">
-              <span class="text-retro-muted">LINKEDIN:</span>
-              <a class="text-retro-cyan hover:underline flex items-center gap-1" href="https://www.linkedin.com/in/bgsaditiya" rel="noopener noreferrer" target="_blank">
-                linkedin.com/in/bgsaditiya ↗
-              </a>
-            </div>
-          </div>
-          <!-- Terminal Quote -->
-          <div class="mt-4 sm:mt-5 p-2.5 sm:p-3 bg-retro-black border border-retro-border font-mono text-[11px] sm:text-xs text-gray-400">
-            <span class="text-slate-300">root@dev:~$</span> "Write code that humans can understand, not just computers."
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- END: AboutMeSection -->
-<!-- BEGIN: ExperienceSection -->
-<section class="py-16 md:py-24 border-b border-retro-border" id="experience">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6">
-    <!-- Section Title -->
-    <div class="text-center mb-8 md:mb-14">
-      <h2 class="font-mono font-bold text-base sm:text-xl text-slate-100 inline-block px-5 sm:px-6 py-1.5 sm:py-2 border-2 border-slate-400 shadow-[4px_4px_0px_#334155] bg-retro-dark tracking-widest uppercase">
-        EXPERIENCE
-      </h2>
-      <p class="font-silkscreen text-[11px] sm:text-xs text-retro-muted mt-3 sm:mt-4 uppercase tracking-wider">
-        // CAREER QUEST LOG &amp; MILESTONES
-      </p>
-    </div>
-    
-    <!-- Experience Table/List -->
-    <div class="border-2 border-retro-border bg-retro-dark divide-y divide-retro-border font-silkscreen text-xs shadow-pixel-white">
-      
-      <!-- Experience Row 1 -->
-      <details class="group p-3 sm:p-4 md:p-5 transition-colors hover:bg-retro-card cursor-pointer" open="">
-        <summary class="list-none select-none">
-          <!-- Mobile Summary (Screen 2: Mobile Responsive) -->
-          <div class="flex md:hidden flex-col gap-1.5">
-            <div class="flex items-center justify-between">
-              <span class="text-slate-200 font-bold text-xs tracking-wide">SEPT 2026 - PRESENT</span>
-              <span class="bg-retro-black border border-slate-500 text-slate-300 text-[9px] px-1.5 py-0.5">CURRENT</span>
-            </div>
-            <div class="flex items-center justify-between">
-              <div class="text-gray-200 uppercase font-bold text-[11px]">Regional Public Hospital</div>
-              <span class="font-pixel text-slate-300 text-xs group-open:rotate-45 transition-transform">+</span>
-            </div>
-            <div class="text-retro-cyan text-[11px]">IT Programmer</div>
-            <div class="text-retro-muted text-[10px]">TRENGGALEK, ID</div>
-          </div>
-
-          <!-- Desktop Summary (Screen 1: Desktop Animated) -->
-          <div class="hidden md:flex md:items-center justify-between gap-3">
-            <div class="flex items-center gap-3">
-              <span class="text-slate-200 font-bold text-sm tracking-wide">SEPT 2026 - PRESENT</span>
-              <span class="bg-retro-black border border-slate-500 text-slate-300 text-[10px] px-2 py-0.5">CURRENT</span>
-            </div>
-            <div class="text-gray-200 uppercase font-bold text-xs">
-              Regional Public Hospital
-            </div>
-            <div class="text-retro-cyan">
-              IT Programmer
-            </div>
-            <div class="text-retro-muted flex items-center justify-end gap-4">
-              <span>TRENGGALEK, ID</span>
-              <span class="font-pixel text-slate-300 text-sm group-open:rotate-45 transition-transform inline-block">+</span>
-            </div>
-          </div>
-        </summary>
-        <div class="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-retro-border/60 font-mono text-xs text-gray-300 leading-relaxed">
-          Leading web application development using React Native &amp; modern TypeScript. Responsible for architecting reusable component libraries, optimizing state management, and collaborating with cross-functional agile teams.
-        </div>
-      </details>
-      
-      <!-- Experience Row 2 -->
-      <details class="group p-3 sm:p-4 md:p-5 transition-colors hover:bg-retro-card cursor-pointer">
-        <summary class="list-none select-none">
-          <!-- Mobile Summary -->
-          <div class="flex md:hidden flex-col gap-1.5">
-            <div class="flex items-center justify-between">
-              <span class="text-slate-300 font-bold text-xs tracking-wide">JAN 2025 - SEPT 2026</span>
-              <span class="font-pixel text-slate-300 text-xs group-open:rotate-45 transition-transform">+</span>
-            </div>
-            <div class="text-gray-200 uppercase font-bold text-[11px]">PT Jasamedika Saranatama</div>
-            <div class="text-retro-cyan text-[11px]">Software Engineer</div>
-            <div class="text-retro-muted text-[10px]">BANDUNG, ID</div>
-          </div>
-
-          <!-- Desktop Summary -->
-          <div class="hidden md:flex md:items-center justify-between gap-3">
-            <div class="flex items-center gap-3">
-              <span class="text-slate-300 font-bold text-sm tracking-wide">JAN 2025 - SEPT 2026</span>
-            </div>
-            <div class="text-gray-200 uppercase font-bold text-xs">
-              PT Jasamedika Saranatama
-            </div>
-            <div class="text-retro-cyan">
-              Software Engineer
-            </div>
-            <div class="text-retro-muted flex items-center justify-end gap-4">
-              <span>BANDUNG, ID</span>
-              <span class="font-pixel text-slate-300 text-sm group-open:rotate-45 transition-transform inline-block">+</span>
-            </div>
-          </div>
-        </summary>
-        <div class="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-retro-border/60 font-mono text-xs text-gray-300 leading-relaxed">
-          Developed and optimized enterprise-scale Hospital Information System (SIMRS) modules, improving operational efficiency for client hospitals.
-        </div>
-      </details>
-      
-      <!-- Experience Row 3 -->
-      <details class="group p-3 sm:p-4 md:p-5 transition-colors hover:bg-retro-card cursor-pointer">
-        <summary class="list-none select-none">
-          <!-- Mobile Summary -->
-          <div class="flex md:hidden flex-col gap-1.5">
-            <div class="flex items-center justify-between">
-              <span class="text-slate-300 font-bold text-xs tracking-wide">JUL 2025 - NOV 2025</span>
-              <span class="font-pixel text-slate-300 text-xs group-open:rotate-45 transition-transform">+</span>
-            </div>
-            <div class="text-gray-200 uppercase font-bold text-[11px]">PT Pippeline Technologies Indonesia</div>
-            <div class="text-retro-cyan text-[11px]">IMAGE EDITOR</div>
-            <div class="text-retro-muted text-[10px]">SLEMAN, ID</div>
-          </div>
-
-          <!-- Desktop Summary -->
-          <div class="hidden md:flex md:items-center justify-between gap-3">
-            <div class="flex items-center gap-3">
-              <span class="text-slate-300 font-bold text-sm tracking-wide">JUL 2025 - NOV 2025</span>
-            </div>
-            <div class="text-gray-200 uppercase font-bold text-xs">
-              PT Pippeline Technologies Indonesia
-            </div>
-            <div class="text-retro-cyan">
-              IMAGE EDITOR
-            </div>
-            <div class="text-retro-muted flex items-center justify-end gap-4">
-              <span>SLEMAN, ID</span>
-              <span class="font-pixel text-slate-300 text-sm group-open:rotate-45 transition-transform inline-block">+</span>
-            </div>
-          </div>
-        </summary>
-        <div class="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-retro-border/60 font-mono text-xs text-gray-300 leading-relaxed">
-          Edited and processed high-volume fashion and e-commerce product photos daily for global internet retailers, maintaining a fast-paced and time-sensitive production workflow.
-        </div>
-      </details>
-    </div>
-  </div>
-</section>
-<!-- END: ExperienceSection -->
-<!-- BEGIN: ContactSection -->
-<section class="py-16 md:py-24 border-b border-retro-border relative" id="contact">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6">
-    <!-- Section Header -->
-    <div class="text-center mb-8 md:mb-14">
-      <h2 class="font-mono font-bold text-base sm:text-xl text-slate-100 inline-block px-5 sm:px-6 py-1.5 sm:py-2 border-2 border-slate-400 shadow-[4px_4px_0px_#334155] bg-retro-dark tracking-widest uppercase">
-        CONTACT
-      </h2>
-      <p class="font-silkscreen text-[11px] sm:text-xs text-retro-muted mt-3 sm:mt-4 uppercase tracking-wider">
-        // INITIATE HANDSHAKE TRANSMISSION
-      </p>
-    </div>
-    
-    <div class="flex flex-col lg:grid lg:grid-cols-12 gap-6 lg:gap-10 items-start">
-      <!-- Left Column: Friendly Inquiry Statement -->
-      <div class="w-full lg:col-span-5 flex flex-col gap-6">
-        <div class="bg-retro-dark border-2 border-retro-border p-4 sm:p-6 shadow-pixel-white">
-          <h3 class="font-mono font-bold text-xs sm:text-sm text-slate-200 uppercase tracking-wide leading-relaxed mb-3 sm:mb-4">
-            ARE YOU INTERESTED IN MY PORTFOLIO AND WANT TO TALK WITH ME?
-          </h3>
-          <p class="font-mono text-xs sm:text-sm text-gray-300 leading-relaxed mb-4 sm:mb-6">
-            WRITE YOUR MESSAGE. I WILL ANSWER AS SOON AS I CAN. 
-            WHETHER FOR FULL-TIME ROLES, HIGH-IMPACT FREELANCE PROJECTS, OR TECH DISCUSSIONS.
-          </p>
-          <div class="space-y-2.5 sm:space-y-3 font-silkscreen text-[11px] sm:text-xs">
-            <div class="p-2.5 sm:p-3 bg-retro-black border border-retro-border flex flex-col sm:flex-row sm:items-center justify-between gap-1">
-              <span class="text-retro-muted">DIRECT EMAIL:</span>
-              <span class="text-retro-cyan select-all text-xs">bagasaditiya11@gmail.com</span>
-            </div>
-            <div class="p-2.5 sm:p-3 bg-retro-black border border-retro-border flex items-center justify-between">
-              <span class="text-retro-muted">RESPONSE TIME:</span>
-              <span class="text-retro-sage">&lt; 24 HOURS</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Right Column: Retro Interactive Form -->
-      <div class="w-full lg:col-span-7">
-        <form class="bg-retro-dark border-2 border-slate-400 p-4 sm:p-6 md:p-8 shadow-[4px_4px_0px_#334155] flex flex-col gap-4 sm:gap-6" id="contact-form">
-          <!-- Email Field -->
-          <div>
-            <label class="block font-silkscreen text-xs text-slate-300 uppercase mb-1.5 sm:mb-2 tracking-wider" for="contact-email">
-              EMAIL <span class="text-retro-cyan" aria-hidden="true">*</span>
-            </label>
-            <input class="w-full bg-retro-black border-2 border-retro-border focus:border-slate-300 focus:outline-none focus:ring-2 focus:ring-retro-cyan focus:ring-offset-2 focus:ring-offset-retro-dark text-white font-mono text-xs sm:text-sm px-3 sm:px-4 py-2.5 sm:py-3 placeholder-gray-600 transition-colors uppercase" id="contact-email" name="email" placeholder="EMAIL@EMAIL.COM" required="" type="email"/>
-          </div>
-          <!-- Message Field -->
-          <div>
-            <label class="block font-silkscreen text-xs text-slate-300 uppercase mb-1.5 sm:mb-2 tracking-wider" for="contact-message">
-              YOUR MESSAGE <span class="text-retro-cyan" aria-hidden="true">*</span>
-            </label>
-            <textarea class="w-full bg-retro-black border-2 border-retro-border focus:border-slate-300 focus:outline-none focus:ring-2 focus:ring-retro-cyan focus:ring-offset-2 focus:ring-offset-retro-dark text-white font-mono text-xs sm:text-sm px-3 sm:px-4 py-2.5 sm:py-3 placeholder-gray-600 transition-colors" id="contact-message" name="message" placeholder="WRITE YOUR MESSAGE HERE..." required="" rows="4"></textarea>
-          </div>
-          <!-- Submission Area -->
-          <div class="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 pt-1 sm:pt-2">
-            <button class="pixel-btn w-full sm:w-auto bg-slate-200 text-slate-900 font-pixel text-xs px-6 sm:px-8 py-3 sm:py-3.5 border-2 border-slate-900 shadow-[3px_3px_0px_#64748B] uppercase font-bold tracking-tight hover:bg-white focus:outline-none focus:ring-2 focus:ring-retro-cyan focus:ring-offset-2 focus:ring-offset-retro-dark disabled:opacity-70 disabled:cursor-not-allowed" id="submit-btn" type="submit">
-              LET'S TALK
-            </button>
-            <span class="font-silkscreen text-xs text-retro-sage hidden" id="form-status" role="status" aria-live="polite">
-              ✓ TRANSMISSION SENT SUCCESSFULLY!
+      <div class="container">
+        <div class="hero-stack">
+          <div class="hero-accent-row">
+            <!-- Handwritten "wow!" SVG Accent -->
+            <svg class="wow-svg" viewBox="0 0 120 48" fill="none" aria-hidden="true">
+              <path class="wow-path" d="M8 26 L16 38 L25 20 L33 38 L42 18 M55 24 C49 24, 46 37, 55 37 C63 37, 65 24, 55 24 Z M72 22 L79 38 L88 21 L96 38 L105 18 M112 12 L110 30 M110 38 L110 40" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span class="status-chip">
+              <span class="status-dot" aria-hidden="true"></span>
+              Available for full-time &amp; select builds
             </span>
           </div>
-        </form>
+
+          <h1 class="hero-title">
+            <span class="hero-line"><span>BAGAS</span></span>
+            <span class="hero-line"><span>ADITIA.</span></span>
+          </h1>
+
+          <p class="hero-subtitle">
+            Full-Stack Architect crafting resilient healthcare systems (SIMRS &amp; EMR) and expressive digital products.
+          </p>
+
+          <div class="hero-cta-wrap">
+            <a class="pill-btn pill-btn--white" href="#craft">
+              Explore my work
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <polyline points="19 12 12 19 5 12"></polyline>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Peeking Mascot Illustration at Bottom Frame Edge -->
+        <div class="hero-illustration-wrap">
+          <button
+            id="mascot-btn"
+            class="mascot-btn"
+            type="button"
+            aria-label="Playful developer mascot illustration, activate for a greeting"
+          >
+            <span class="mascot-bubble" aria-hidden="true">hey there!</span>
+            <svg class="mascot-svg" viewBox="0 0 360 220" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <!-- Headphone Band -->
+              <path d="M90 120 C90 45, 270 45, 270 120" stroke="#22d3ee" stroke-width="18" stroke-linecap="round"/>
+              <path d="M90 120 C90 45, 270 45, 270 120" stroke="#0b0b10" stroke-width="4" stroke-linecap="round"/>
+              <!-- Earcups -->
+              <rect x="66" y="102" width="32" height="58" rx="16" fill="#22d3ee" stroke="#0b0b10" stroke-width="5"/>
+              <rect x="262" y="102" width="32" height="58" rx="16" fill="#22d3ee" stroke="#0b0b10" stroke-width="5"/>
+              <!-- Character Body / Hoodie Peeking -->
+              <path d="M78 220 C78 168, 120 152, 180 152 C240 152, 282 168, 282 220 Z" fill="#0b0b10"/>
+              <!-- Head -->
+              <rect x="104" y="64" width="152" height="122" rx="58" fill="#fbbf93" stroke="#0b0b10" stroke-width="5"/>
+              <!-- Hair Cap -->
+              <path d="M104 110 C104 68, 140 50, 184 50 C228 50, 256 72, 256 108 C236 96, 210 92, 180 96 C148 100, 124 94, 104 110 Z" fill="#0b0b10"/>
+              <!-- Eyes -->
+              <ellipse cx="146" cy="126" rx="17" ry="19" fill="#ffffff" stroke="#0b0b10" stroke-width="4"/>
+              <ellipse cx="214" cy="126" rx="17" ry="19" fill="#ffffff" stroke="#0b0b10" stroke-width="4"/>
+              <g class="mascot-pupil">
+                <circle cx="148" cy="126" r="8" fill="#0b0b10"/>
+                <circle cx="151" cy="123" r="2.5" fill="#ffffff"/>
+              </g>
+              <g class="mascot-pupil">
+                <circle cx="216" cy="126" r="8" fill="#0b0b10"/>
+                <circle cx="219" cy="123" r="2.5" fill="#ffffff"/>
+              </g>
+              <!-- Smile -->
+              <path d="M162 154 C172 166, 188 166, 198 154" stroke="#0b0b10" stroke-width="4.5" stroke-linecap="round"/>
+              <!-- Peeking Laptop Rim -->
+              <rect x="116" y="180" width="128" height="40" rx="10" fill="#a855f7" stroke="#0b0b10" stroke-width="5"/>
+              <circle cx="180" cy="202" r="7" fill="#b8ff3b"/>
+              <!-- Peeking Hands -->
+              <circle cx="114" cy="188" r="16" fill="#fbbf93" stroke="#0b0b10" stroke-width="5"/>
+              <circle cx="246" cy="188" r="16" fill="#fbbf93" stroke="#0b0b10" stroke-width="5"/>
+            </svg>
+          </button>
+        </div>
       </div>
-    </div>
-  </div>
-</section>
-<!-- END: ContactSection -->
-    </main>
-    <!-- BEGIN: Footer -->
-<footer class="bg-retro-black py-8 border-t border-retro-border text-center font-silkscreen text-xs text-retro-muted relative z-10">
-  <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2.5 sm:gap-4 text-[10px] sm:text-xs font-silkscreen">
-    <div class="text-retro-muted">
-      COPYLEFT 2026 // ALL RIGHTS REVERSED
-    </div>
-    <!-- <div class="flex items-center gap-1 text-gray-400">
-      MADE BY <span class="text-retro-pink">♥</span> IN BERLIN
-    </div> -->
-    <div class="flex items-center gap-4 text-slate-300">
-      <a class="hover:underline" href="#hero">TOP ↑</a>
-    </div>
-  </div>
-</footer>
-<!-- END: Footer -->
-  </div>
+    </section>
 
-  <!-- BEGIN: InteractiveScripts -->
-  <script data-purpose="form-interactions">
-    // Form submission feedback simulation
-    const form = document.getElementById('contact-form');
-    const statusMsg = document.getElementById('form-status');
-    const submitBtn = document.getElementById('submit-btn');
+    <!-- CHAPTER 2: WHITE CANVAS — PARALLEL CAPABILITY CARDS -->
+    <section class="section-white craft-section" id="craft">
+      <div class="container">
+        <header class="section-header" data-reveal>
+          <h2 class="section-display">BUILT TO SCALE.</h2>
+          <p class="section-supporting">
+            Two parallel tracks—enterprise healthcare backends and kinetic user interfaces—delivered under one engineering standard.
+          </p>
+        </header>
 
-    if (form) {
-      form.addEventListener('submit', (e) => {
-        e.preventDefault();
+        <div class="cards-grid">
+          <article class="poster-card" data-reveal data-delay="60ms">
+            <div>
+              <span class="card-kicker">01 · Systems &amp; Health-Tech</span>
+              <h3 class="card-title">SIMRS, EMR &amp; Critical API Bridges</h3>
+              <p class="card-meta">2+ Years Production · Trenggalek &amp; Bandung</p>
+              <ul class="card-list">
+                <li>
+                  <svg class="card-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  <span>Hospital Information Systems (SIMRS) &amp; Electronic Medical Records</span>
+                </li>
+                <li>
+                  <svg class="card-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  <span>BPJS &amp; SatuSehat external healthcare API integrations</span>
+                </li>
+                <li>
+                  <svg class="card-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  <span>TypeScript, React, Next.js, Node.js &amp; GraphQL architecture</span>
+                </li>
+                <li>
+                  <svg class="card-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  <span>Clean state management &amp; reusable component libraries</span>
+                </li>
+              </ul>
+            </div>
+            <a class="pill-btn pill-btn--ink pill-btn--full" href="#contact">Discuss a systems build</a>
+          </article>
 
-        // Disable button and show loading state
-        const originalText = submitBtn.innerText;
-        submitBtn.disabled = true;
-        submitBtn.innerText = 'TRANSMITTING...';
+          <article class="poster-card" data-reveal data-delay="140ms">
+            <div>
+              <span class="card-kicker">02 · Product &amp; Visual Craft</span>
+              <h3 class="card-title">Web, Mobile &amp; Pixel-Sharp Production</h3>
+              <p class="card-meta">React Native · Motion UI · Visual Assets</p>
+              <ul class="card-list">
+                <li>
+                  <svg class="card-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  <span>Cross-platform React Native &amp; responsive web applications</span>
+                </li>
+                <li>
+                  <svg class="card-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  <span>Expressive typography, tactile micro-interactions &amp; accessible motion</span>
+                </li>
+                <li>
+                  <svg class="card-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  <span>Sharp visual judgment honed in high-volume e-commerce asset production</span>
+                </li>
+                <li>
+                  <svg class="card-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  <span>Maintainable codebases built for humans to read first</span>
+                </li>
+              </ul>
+            </div>
+            <a class="pill-btn pill-btn--outline-ink pill-btn--full" href="#experience">See career quest log</a>
+          </article>
+        </div>
+      </div>
+    </section>
 
-        // Simulate network request
-        setTimeout(() => {
-          statusMsg.classList.remove('hidden');
-          form.reset();
+    <!-- CHAPTER 3: DARK ILLUSTRATION STAGE (Origin Story + Bottom White Arc) -->
+    <section class="dark-stage" id="about">
+      <div class="container">
+        <div class="dark-stage-inner" data-reveal>
+          <!-- Symmetrical Mirrored Cartoon Creatures SVG -->
+          <svg class="dark-creatures-row" viewBox="0 0 640 160" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <!-- Left Creature -->
+            <path d="M50 130 C50 75, 115 62, 145 102 C160 122, 130 144, 95 144 C70 144, 50 138, 50 130 Z" fill="#22d3ee"/>
+            <circle cx="96" cy="100" r="10" fill="#ffffff"/>
+            <circle cx="99" cy="100" r="4.5" fill="#0b0b10"/>
+            <path d="M36 92 L58 80 L48 104 Z" fill="#facc15"/>
+            <!-- Center Sparks -->
+            <path d="M320 24 L328 52 L356 60 L328 68 L320 96 L312 68 L284 60 L312 52 Z" fill="#b8ff3b"/>
+            <circle cx="220" cy="48" r="7" fill="#a855f7"/>
+            <circle cx="420" cy="48" r="7" fill="#a855f7"/>
+            <path d="M245 112 L262 94 L256 116 L274 114 L250 138 Z" fill="#ff2e93"/>
+            <path d="M395 112 L378 94 L384 116 L366 114 L390 138 Z" fill="#ff2e93"/>
+            <!-- Mirrored Right Creature -->
+            <path d="M590 130 C590 75, 525 62, 495 102 C480 122, 510 144, 545 144 C570 144, 590 138, 590 130 Z" fill="#a855f7"/>
+            <circle cx="544" cy="100" r="10" fill="#ffffff"/>
+            <circle cx="541" cy="100" r="4.5" fill="#0b0b10"/>
+            <path d="M604 92 L582 80 L592 104 Z" fill="#b8ff3b"/>
+          </svg>
 
-          // Restore button state
-          submitBtn.disabled = false;
-          submitBtn.innerText = originalText;
+          <h2 class="section-display">ORIGIN STORY.</h2>
 
-          // Hide success message after delay
-          setTimeout(() => {
-            statusMsg.classList.add('hidden');
-          }, 5000);
-        }, 800); // 800ms loading simulation
-      });
-    }
-  </script>
-<script data-purpose="animated-starfield">
-    // High-performance lightweight 8-bit Pixel Starfield and Particle Animation
-    (function initPixelStarfield() {
-      const canvas = document.getElementById('retro-starfield');
-      if (!canvas) return;
-      const ctx = canvas.getContext('2d');
-      let width = 0;
-      let height = 0;
-      let stars = [];
-      const mouse = { x: -1000, y: -1000, targetX: -1000, targetY: -1000 };
+          <p class="dark-bio">
+            Started scripting bots in early mIRC days. Now architecting hospital systems and digital products that stand up in production.
+          </p>
 
-      // Palette of muted elegant tones matching existing design
-      const starColors = [
-        'rgba(226, 232, 240, ', // Slate 200
-        'rgba(148, 163, 184, ', // Slate 400
-        'rgba(56, 189, 248, ',  // Muted Cyan
-        'rgba(94, 234, 212, ',  // Soft Sage
-        'rgba(167, 139, 250, '  // Soft Purple
-      ];
+          <p class="dark-bio-secondary">
+            Proven track record optimizing enterprise Hospital Information Systems (SIMRS) and Electronic Medical Records (EMR) across regional public hospitals and PT Jasamedika Saranatama—bridging complex BPJS &amp; SatuSehat APIs while pairing engineering discipline with visual precision from PT Pippeline Technologies Indonesia.
+          </p>
 
-      function resize() {
-        width = canvas.width = window.innerWidth;
-        height = canvas.height = window.innerHeight;
-        initStars();
-      }
+          <div class="profile-pills">
+            <span class="info-pill">Trenggalek, ID · Onsite &amp; Remote</span>
+            <a class="info-pill" href="https://github.com/bgsaditiya" target="_blank" rel="noopener noreferrer">
+              GitHub
+              <span aria-hidden="true">↗</span>
+            </a>
+            <a class="info-pill" href="https://www.linkedin.com/in/bgsaditiya" target="_blank" rel="noopener noreferrer">
+              LinkedIn
+              <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </div>
+      </div>
 
-      function initStars() {
-        const starCount = Math.floor((width * height) / 8000); // balanced density
-        stars = [];
-        for (let i = 0; i < starCount; i++) {
-          stars.push(createStar(Math.random() * height));
-        }
-      }
+      <!-- Rounded Pink Arc Transition -->
+      <svg class="stage-arc" viewBox="0 0 1440 100" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 100 Q720 0 1440 100 L1440 100 L0 100 Z" fill="#e11d74"/>
+      </svg>
+    </section>
 
-      function createStar(initialY) {
-        const sizeRand = Math.random();
-        // Strict 8-bit discrete pixel sizes: 2px or 3px or 4px
-        const size = sizeRand > 0.85 ? 4 : (sizeRand > 0.5 ? 3 : 2);
-        const speed = 0.15 + Math.random() * 0.45;
-        const colorPrefix = starColors[Math.floor(Math.random() * starColors.length)];
-        return {
-          x: Math.floor(Math.random() * (width / size)) * size,
-          y: initialY !== undefined ? initialY : height + 10,
-          size: size,
-          baseSpeed: speed,
-          colorPrefix: colorPrefix,
-          twinkleSpeed: 0.02 + Math.random() * 0.04,
-          twinklePhase: Math.random() * Math.PI * 2,
-          driftX: (Math.random() - 0.5) * 0.15,
-          isCross: Math.random() > 0.88 // occasional 8-bit cross-shaped twinkle star
-        };
-      }
+    <!-- CHAPTER 4: HOT PINK CANVAS — STANDALONE CAREER LOG -->
+    <section class="career-section" id="experience">
+      <div class="container">
+        <header class="section-header" data-reveal>
+          <h2 class="section-display">CAREER LOG.</h2>
+          <p class="section-supporting">
+            Production engineering milestones across healthcare systems and digital asset pipelines.
+          </p>
+        </header>
 
-      // Smooth mouse tracking for subtle cosmic parallax / particle push
-      window.addEventListener('mousemove', (e) => {
-        mouse.targetX = e.clientX;
-        mouse.targetY = e.clientY;
-      });
+        <div class="career-card" data-reveal data-delay="80ms">
+          <div class="quest-accordion">
+            <details class="quest-item" open>
+              <summary>
+                <span class="quest-summary-main">
+                  <span class="quest-meta">
+                    <span>SEPT 2026 – PRESENT</span>
+                    <span class="quest-badge">CURRENT</span>
+                    <span>TRENGGALEK, ID</span>
+                  </span>
+                  <span class="quest-role">IT Programmer</span>
+                  <span class="quest-org">Regional Public Hospital</span>
+                </span>
+                <span class="quest-plus" aria-hidden="true">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </span>
+              </summary>
+              <div class="quest-body">
+                <p>
+                  Leading web &amp; mobile application development with React Native and modern TypeScript. Architecting reusable component libraries, optimizing state management, and shipping hospital clinical workflows with cross-functional agile teams.
+                </p>
+              </div>
+            </details>
 
-      window.addEventListener('mouseleave', () => {
-        mouse.targetX = -1000;
-        mouse.targetY = -1000;
-      });
+            <details class="quest-item">
+              <summary>
+                <span class="quest-summary-main">
+                  <span class="quest-meta">
+                    <span>JAN 2025 – SEPT 2026</span>
+                    <span>BANDUNG, ID</span>
+                  </span>
+                  <span class="quest-role">Software Engineer</span>
+                  <span class="quest-org">PT Jasamedika Saranatama</span>
+                </span>
+                <span class="quest-plus" aria-hidden="true">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </span>
+              </summary>
+              <div class="quest-body">
+                <p>
+                  Developed and optimized enterprise-scale Hospital Information System (SIMRS) and EMR modules, including BPJS and SatuSehat integrations that improved operational throughput across client hospitals.
+                </p>
+              </div>
+            </details>
 
-      function render() {
-        // Linear interpolation for mouse pos
-        mouse.x += (mouse.targetX - mouse.x) * 0.05;
-        mouse.y += (mouse.targetY - mouse.y) * 0.05;
+            <details class="quest-item">
+              <summary>
+                <span class="quest-summary-main">
+                  <span class="quest-meta">
+                    <span>JUL 2025 – NOV 2025</span>
+                    <span>SLEMAN, ID</span>
+                  </span>
+                  <span class="quest-role">Image Editor</span>
+                  <span class="quest-org">PT Pippeline Technologies Indonesia</span>
+                </span>
+                <span class="quest-plus" aria-hidden="true">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </span>
+              </summary>
+              <div class="quest-body">
+                <p>
+                  Edited and processed high-volume fashion and e-commerce product photography daily for global internet retailers under tight turnaround SLAs, sharpening attention to visual consistency and pixel craft.
+                </p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        ctx.clearRect(0, 0, width, height);
+    <!-- CHAPTER 5: WHITE CANVAS — TWO-COLUMN CONTACT FORM & QUICK FAQ -->
+    <section class="section-white quest-section" id="contact">
+      <div class="container two-col-grid">
+        <!-- Left Column: Direct Contact & Accessible Form -->
+        <div data-reveal>
+          <h2 class="section-display">LET'S TALK.</h2>
+          <p class="contact-copy">
+            Open for full-time engineering roles, high-impact freelance builds, or technical architecture discussions. Average response under 24 hours.
+          </p>
 
-        for (let i = 0; i < stars.length; i++) {
-          const star = stars[i];
+          <div class="direct-row">
+            <button
+              id="copy-email-btn"
+              class="copy-email-btn"
+              type="button"
+              data-email="bagasaditiya11@gmail.com"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+              bagasaditiya11@gmail.com
+            </button>
+            <span id="copy-feedback" class="copy-feedback" role="status" aria-live="polite"></span>
+          </div>
 
-          // Star vertical floating motion
-          star.y -= star.baseSpeed;
-          star.x += star.driftX;
-          star.twinklePhase += star.twinkleSpeed;
+          <form id="contact-form" class="contact-form" aria-labelledby="contact-form-title" novalidate>
+            <h3 id="contact-form-title" class="accordion-heading">Send a message</h3>
 
-          // Subtle interactive deflection from cursor
-          const dx = star.x - mouse.x;
-          const dy = star.y - mouse.y;
-          const distSq = dx * dx + dy * dy;
-          if (distSq < 14400 && distSq > 0) { // within 120px
-            const force = (120 - Math.sqrt(distSq)) / 120;
-            star.x += (dx / Math.sqrt(distSq)) * force * 1.5;
-            star.y += (dy / Math.sqrt(distSq)) * force * 1.5;
-          }
+            <div class="form-field">
+              <label for="contact-email">Email <span aria-hidden="true">*</span></label>
+              <input
+                id="contact-email"
+                name="email"
+                type="email"
+                autocomplete="email"
+                autocorrect="off"
+                autocapitalize="none"
+                spellcheck="false"
+                enterkeyhint="next"
+                placeholder="you@company.com"
+                aria-describedby="email-error"
+                required
+              >
+              <p id="email-error" class="field-error" hidden></p>
+            </div>
 
-          // Screen wrapping
-          if (star.y < -10) {
-            stars[i] = createStar();
-            continue;
-          }
-          if (star.x < 0) star.x = width;
-          if (star.x > width) star.x = 0;
+            <div class="form-field">
+              <label for="contact-message">Message <span aria-hidden="true">*</span></label>
+              <textarea
+                id="contact-message"
+                name="message"
+                rows="4"
+                minlength="10"
+                placeholder="Tell me about your role, project timeline, or idea..."
+                aria-describedby="message-error"
+                required
+              ></textarea>
+              <p id="message-error" class="field-error" hidden></p>
+            </div>
 
-          // Pixel snap to maintain crisp retro aesthetics
-          const px = Math.floor(star.x);
-          const py = Math.floor(star.y);
-          const alpha = 0.2 + (Math.sin(star.twinklePhase) * 0.5 + 0.5) * 0.65;
+            <div class="form-actions">
+              <button id="submit-btn" class="pill-btn pill-btn--ink" type="submit">Send Message</button>
+              <p id="form-status" class="form-status" role="status" aria-live="polite" hidden></p>
+            </div>
+          </form>
+        </div>
 
-          ctx.fillStyle = star.colorPrefix + alpha.toFixed(3) + ')';
+        <!-- Right Column: Quick FAQ Accordion -->
+        <div data-reveal data-delay="120ms">
+          <h3 class="accordion-heading">Quick FAQ</h3>
+          <div class="quest-accordion">
+            <details class="quest-item" open>
+              <summary>
+                <span class="quest-summary-main">
+                  <span class="quest-meta">FAQ · TECH STACK</span>
+                  <span class="quest-role">What tools do you ship with daily?</span>
+                </span>
+                <span class="quest-plus" aria-hidden="true">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </span>
+              </summary>
+              <div class="quest-body">
+                <p>
+                  TypeScript, React, Next.js, React Native, Node.js, and GraphQL—paired with healthcare interoperability standards (BPJS &amp; SatuSehat) and accessible modern CSS.
+                </p>
+              </div>
+            </details>
 
-          if (star.isCross && star.size >= 3) {
-            // 8-bit cross star shape
-            const s = star.size;
-            ctx.fillRect(px, py - s, s, s * 3);
-            ctx.fillRect(px - s, py, s * 3, s);
-          } else {
-            // Crisp square pixel
-            ctx.fillRect(px, py, star.size, star.size);
-          }
-        }
+            <details class="quest-item">
+              <summary>
+                <span class="quest-summary-main">
+                  <span class="quest-meta">FAQ · HEALTH-TECH &amp; APIS</span>
+                  <span class="quest-role">What healthcare systems and integrations have you built?</span>
+                </span>
+                <span class="quest-plus" aria-hidden="true">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </span>
+              </summary>
+              <div class="quest-body">
+                <p>
+                  Enterprise Hospital Information Systems (SIMRS), Electronic Medical Records (EMR), and reliable bridges connecting clinical workflows to BPJS and SatuSehat national APIs.
+                </p>
+              </div>
+            </details>
 
-        requestAnimationFrame(render);
-      }
+            <details class="quest-item">
+              <summary>
+                <span class="quest-summary-main">
+                  <span class="quest-meta">FAQ · AVAILABILITY</span>
+                  <span class="quest-role">Are you available for remote or freelance work?</span>
+                </span>
+                <span class="quest-plus" aria-hidden="true">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </span>
+              </summary>
+              <div class="quest-body">
+                <p>
+                  Yes—available for both remote engagements and onsite collaboration around Trenggalek / East Java. Use the form on the left or email bagasaditiya11@gmail.com.
+                </p>
+              </div>
+            </details>
 
-      window.addEventListener('resize', resize);
-      resize();
-      render();
-    })();
-  </script>
-  <!-- END: InteractiveScripts -->
+            <details class="quest-item">
+              <summary>
+                <span class="quest-summary-main">
+                  <span class="quest-meta">FAQ · WORKFLOW</span>
+                  <span class="quest-role">How fast can we kick off a project or role discussion?</span>
+                </span>
+                <span class="quest-plus" aria-hidden="true">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </span>
+              </summary>
+              <div class="quest-body">
+                <p>
+                  Send your brief, role details, or architecture challenge via the form. I reply within 24 hours with next steps and availability.
+                </p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHAPTER 6: CLOSING BLACK CARD INSIDE PINK FLAME FRAME -->
+    <section class="closing-stage" id="closing">
+      <div class="container">
+        <div class="flame-frame" data-reveal>
+          <!-- Expressive Flame Wave SVG Frame -->
+          <svg class="flame-bg-svg" viewBox="0 0 1000 520" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M90 80 C160 10, 260 55, 340 20 C430 -15, 520 55, 620 22 C720 -10, 820 45, 910 75 C985 100, 995 220, 965 340 C940 440, 860 500, 740 490 C610 478, 520 515, 400 495 C270 475, 160 510, 75 450 C10 400, 15 170, 90 80 Z" fill="#ff2e93"/>
+            <path d="M120 96 C190 42, 290 78, 370 46 C460 12, 540 72, 640 44 C740 16, 840 68, 900 108 C955 145, 965 245, 940 335 C918 415, 840 470, 725 462 C605 454, 515 485, 395 468 C275 450, 175 480, 100 426 C42 384, 52 150, 120 96 Z" fill="#facc15" opacity="0.24"/>
+          </svg>
+
+          <div class="closing-card">
+            <span class="brand-badge" aria-hidden="true">B.</span>
+            <h2 class="section-display">READY TO SHIP?</h2>
+            <p class="closing-copy">
+              Solid architecture, expressive motion, and zero fluff. Let's build your next product.
+            </p>
+            <a class="pill-btn pill-btn--lime" href="#contact-email">
+              Start a conversation
+              <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+
+        <footer class="site-footer">
+          <div>COPYLEFT 2026 · BAGAS ADITIA · ALL RIGHTS REVERSED</div>
+          <div class="footer-links">
+            <a href="https://github.com/bgsaditiya" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="https://www.linkedin.com/in/bgsaditiya" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="#hero">Top ↑</a>
+          </div>
+        </footer>
+      </div>
+    </section>
+  </main>
 </body>
 </html>

@@ -1,0 +1,28 @@
+{
+  "name": "retro-portfolio",
+  "version": "1.0.0",
+  "description": "Website portfolio bertema **Retro Pixel 8-Bit / Monospace** yang dibuat berdasarkan desain dari Google Stitch (`Responsive GitHub Portfolio Website`).",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bgsaditiya/retro-portfolio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/bgsaditiya/retro-portfolio/issues"
+  },
+  "homepage": "https://github.com/bgsaditiya/retro-portfolio#readme",
+  "devDependencies": {
+    "@fontsource/ibm-plex-sans": "^5.3.0",
+    "@fontsource/jetbrains-mono": "^5.3.0",
+    "@fontsource/space-grotesk": "^5.3.0",
+    "@tailwindcss/cli": "^4.3.5",
+    "tailwindcss": "^4.3.5"
+  }
+}
