@@ -30,7 +30,7 @@
   <div id="scroll-progress" class="scroll-progress" aria-hidden="true"></div>
 
   <!-- Right-edge vertical rail badge (decorative status, separate from CTAs) -->
-  <div class="edge-rail" aria-hidden="true">OPEN TO WORK · ID #00256</div>
+  <div class="edge-rail" aria-hidden="true">BUILDING IN PUBLIC · ID #00256</div>
 
   <!-- Header Chrome -->
   <header class="site-header">
@@ -42,14 +42,14 @@
 
       <nav class="primary-nav" aria-label="Primary">
         <ul>
-          <li><a href="#craft">Capabilities</a></li>
+          <li><a href="#craft">Works</a></li>
           <li><a href="#about">Story</a></li>
           <li><a href="#experience">Experience</a></li>
         </ul>
       </nav>
 
       <div class="header-actions">
-        <a class="pill-btn pill-btn--white pill-btn--sm" href="#contact">Let's Talk</a>
+        <a class="pill-btn pill-btn--white pill-btn--sm" href="#contact">Say Hi</a>
         <button
           id="menu-toggle"
           class="menu-toggle"
@@ -69,10 +69,10 @@
 
     <nav id="mobile-nav" class="mobile-drawer" aria-label="Mobile" hidden>
       <ul>
-        <li><a href="#craft">Capabilities</a></li>
+        <li><a href="#craft">Works</a></li>
         <li><a href="#about">Origin Story</a></li>
         <li><a href="#experience">Experience</a></li>
-        <li><a href="#contact">FAQ &amp; Contact</a></li>
+        <li><a href="#contact">Note &amp; FAQ</a></li>
       </ul>
     </nav>
   </header>
@@ -99,7 +99,7 @@
             </svg>
             <span class="status-chip">
               <span class="status-dot" aria-hidden="true"></span>
-              Available for work &amp; select builds
+              Just sharing craft &amp; code
             </span>
           </div>
 
@@ -156,10 +156,10 @@
                 <circle cx="219" cy="123" r="2.5" fill="#ffffff"/>
               </g>
               <!-- Smile -->
-              <path d="M162 154 C172 166, 188 166, 198 154" stroke="#0b0b10" stroke-width="4.5" stroke-linecap="round"/>
+              <path id="mascot-mouth" d="M162 154 C172 166, 188 166, 198 154" stroke="#0b0b10" stroke-width="4.5" stroke-linecap="round"/>
               <!-- Peeking Laptop Rim -->
               <rect x="116" y="180" width="128" height="40" rx="10" fill="#a855f7" stroke="#0b0b10" stroke-width="5"/>
-              <circle cx="180" cy="202" r="7" fill="#b8ff3b"/>
+              <circle id="mascot-laptop-led" cx="180" cy="202" r="7" fill="#b8ff3b"/>
               <!-- Peeking Hands -->
               <circle cx="114" cy="188" r="16" fill="#fbbf93" stroke="#0b0b10" stroke-width="5"/>
               <circle cx="246" cy="188" r="16" fill="#fbbf93" stroke="#0b0b10" stroke-width="5"/>
@@ -169,85 +169,93 @@
       </div>
     </section>
 
-    <!-- CHAPTER 2: WHITE CANVAS — PARALLEL CAPABILITY CARDS -->
+    <!-- CHAPTER 2: WHITE CANVAS — SELECTED WORK & EXPERIMENTS -->
     <section class="section-white craft-section" id="craft">
       <div class="container">
         <header class="section-header" data-reveal>
-          <h2 class="section-display">BUILT TO SCALE.</h2>
+          <h2 class="section-display">THINGS I BUILT.</h2>
           <p class="section-supporting">
-            Two parallel tracks—enterprise healthcare backends and kinetic user interfaces—delivered under one engineering standard.
+            Selected builds, production systems, and web experiments I enjoy tinkering with.
           </p>
         </header>
 
         <div class="cards-grid">
           <article class="poster-card" data-reveal data-delay="60ms">
             <div>
-              <span class="card-kicker">01 · Systems &amp; Health-Tech</span>
-              <h3 class="card-title">SIMRS, EMR &amp; Critical API Bridges</h3>
-              <p class="card-meta">2+ Years Production · Trenggalek &amp; Bandung</p>
+              <span class="card-kicker">01 · Web Experiment &amp; Motion UI</span>
+              <h3 class="card-title">Poster Portfolio &amp; Kinetic SVG Lab</h3>
+              <p class="card-meta">Vanilla CSS · Scroll-Driven Motion · Zero Runtime Deps</p>
               <ul class="card-list">
                 <li>
                   <svg class="card-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <polyline points="20 6 9 17 4 12"></polyline>
                   </svg>
-                  <span>Hospital Information Systems (SIMRS) &amp; Electronic Medical Records</span>
+                  <span>Poster-grade typography with self-hosted variable Bricolage Grotesque (opsz &amp; wdth axes)</span>
                 </li>
                 <li>
                   <svg class="card-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <polyline points="20 6 9 17 4 12"></polyline>
                   </svg>
-                  <span>BPJS &amp; SatuSehat external healthcare API integrations</span>
+                  <span>Native CSS scroll() progress, view() parallax, and spring-physics micro-interactions</span>
                 </li>
                 <li>
                   <svg class="card-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <polyline points="20 6 9 17 4 12"></polyline>
                   </svg>
-                  <span>TypeScript, React, Next.js, Node.js &amp; GraphQL architecture</span>
-                </li>
-                <li>
-                  <svg class="card-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  <span>Clean state management &amp; reusable component libraries</span>
+                  <span>Pointer-tracking SVG mascot with interactive mood states and speech bubble easter eggs</span>
                 </li>
               </ul>
+              <div class="card-tags" aria-label="Tech stack">
+                <span class="card-tag">HTML5</span>
+                <span class="card-tag">Modern CSS</span>
+                <span class="card-tag">Vanilla JS</span>
+                <span class="card-tag">SVG Art</span>
+              </div>
             </div>
-            <a class="pill-btn pill-btn--ink pill-btn--full" href="#contact">Discuss a systems build</a>
+            <div class="card-actions">
+              <a class="pill-btn pill-btn--ink pill-btn--full" href="https://github.com/bgsaditiya/retro-portfolio" target="_blank" rel="noopener noreferrer">
+                View source on GitHub <span aria-hidden="true">↗</span>
+              </a>
+            </div>
           </article>
 
           <article class="poster-card" data-reveal data-delay="140ms">
             <div>
-              <span class="card-kicker">02 · Product &amp; Visual Craft</span>
-              <h3 class="card-title">Web, Mobile &amp; Pixel-Sharp Production</h3>
-              <p class="card-meta">React Native · Motion UI · Visual Assets</p>
+              <span class="card-kicker">02 · Production Systems &amp; Health-Tech</span>
+              <h3 class="card-title">SIMRS, EMR &amp; National Health API Bridges</h3>
+              <p class="card-meta">TypeScript · React &amp; React Native · GraphQL</p>
               <ul class="card-list">
                 <li>
                   <svg class="card-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <polyline points="20 6 9 17 4 12"></polyline>
                   </svg>
-                  <span>Cross-platform React Native &amp; responsive web applications</span>
+                  <span>Clinical workflow modules for Hospital Information Systems (SIMRS) &amp; Electronic Medical Records</span>
                 </li>
                 <li>
                   <svg class="card-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <polyline points="20 6 9 17 4 12"></polyline>
                   </svg>
-                  <span>Expressive typography, tactile micro-interactions &amp; accessible motion</span>
+                  <span>Resilient interoperability bridges connecting hospital backends with BPJS &amp; SatuSehat APIs</span>
                 </li>
                 <li>
                   <svg class="card-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <polyline points="20 6 9 17 4 12"></polyline>
                   </svg>
-                  <span>Sharp visual judgment honed in high-volume e-commerce asset production</span>
-                </li>
-                <li>
-                  <svg class="card-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  <span>Maintainable codebases built for humans to read first</span>
+                  <span>Reusable component libraries and predictable state management for daily hospital operations</span>
                 </li>
               </ul>
+              <div class="card-tags" aria-label="Tech stack">
+                <span class="card-tag">TypeScript</span>
+                <span class="card-tag">React Native</span>
+                <span class="card-tag">Next.js</span>
+                <span class="card-tag">GraphQL</span>
+              </div>
             </div>
-            <a class="pill-btn pill-btn--outline-ink pill-btn--full" href="#experience">See career quest log</a>
+            <div class="card-actions">
+              <a class="pill-btn pill-btn--outline-ink pill-btn--full" href="https://github.com/bgsaditiya" target="_blank" rel="noopener noreferrer">
+                Explore GitHub profile <span aria-hidden="true">↗</span>
+              </a>
+            </div>
           </article>
         </div>
       </div>
@@ -396,14 +404,14 @@
       </div>
     </section>
 
-    <!-- CHAPTER 5: WHITE CANVAS — TWO-COLUMN CONTACT FORM & QUICK FAQ -->
+    <!-- CHAPTER 5: WHITE CANVAS — TWO-COLUMN DROP A NOTE & QUICK FAQ -->
     <section class="section-white quest-section" id="contact">
       <div class="container two-col-grid">
-        <!-- Left Column: Direct Contact & Accessible Form -->
+        <!-- Left Column: Direct Links & Casual Note -->
         <div data-reveal>
-          <h2 class="section-display">LET'S TALK.</h2>
+          <h2 class="section-display">DROP A NOTE.</h2>
           <p class="contact-copy">
-            Open for full-time engineering roles, high-impact freelance builds, or technical architecture discussions. Average response under 24 hours.
+            Want to geek out about healthcare systems, motion UI, or random code experiments? Copy my email, find me on GitHub/LinkedIn, or leave a quick note below.
           </p>
 
           <div class="direct-row">
@@ -419,11 +427,17 @@
               </svg>
               bagasaditiya11@gmail.com
             </button>
+            <a class="direct-link-pill" href="https://github.com/bgsaditiya" target="_blank" rel="noopener noreferrer">
+              GitHub <span aria-hidden="true">↗</span>
+            </a>
+            <a class="direct-link-pill" href="https://www.linkedin.com/in/bgsaditiya" target="_blank" rel="noopener noreferrer">
+              LinkedIn <span aria-hidden="true">↗</span>
+            </a>
             <span id="copy-feedback" class="copy-feedback" role="status" aria-live="polite"></span>
           </div>
 
           <form id="contact-form" class="contact-form" aria-labelledby="contact-form-title" novalidate>
-            <h3 id="contact-form-title" class="accordion-heading">Send a message</h3>
+            <h3 id="contact-form-title" class="accordion-heading">Quick note</h3>
 
             <div class="form-field">
               <label for="contact-email">Email <span aria-hidden="true">*</span></label>
@@ -436,7 +450,7 @@
                 autocapitalize="none"
                 spellcheck="false"
                 enterkeyhint="next"
-                placeholder="you@company.com"
+                placeholder="you@domain.com"
                 aria-describedby="email-error"
                 required
               >
@@ -444,13 +458,13 @@
             </div>
 
             <div class="form-field">
-              <label for="contact-message">Message <span aria-hidden="true">*</span></label>
+              <label for="contact-message">Note <span aria-hidden="true">*</span></label>
               <textarea
                 id="contact-message"
                 name="message"
-                rows="4"
+                rows="3"
                 minlength="10"
-                placeholder="Tell me about your role, project timeline, or idea..."
+                placeholder="Share a cool link, ask about a build, or just say hi..."
                 aria-describedby="message-error"
                 required
               ></textarea>
@@ -458,7 +472,7 @@
             </div>
 
             <div class="form-actions">
-              <button id="submit-btn" class="pill-btn pill-btn--ink" type="submit">Send Message</button>
+              <button id="submit-btn" class="pill-btn pill-btn--ink" type="submit">Drop a Note</button>
               <p id="form-status" class="form-status" role="status" aria-live="polite" hidden></p>
             </div>
           </form>
@@ -511,8 +525,8 @@
             <details class="quest-item">
               <summary>
                 <span class="quest-summary-main">
-                  <span class="quest-meta">FAQ · AVAILABILITY</span>
-                  <span class="quest-role">Are you available for remote or freelance work?</span>
+                  <span class="quest-meta">FAQ · CURRENTLY TINKERING</span>
+                  <span class="quest-role">What are you experimenting with lately?</span>
                 </span>
                 <span class="quest-plus" aria-hidden="true">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
@@ -523,7 +537,7 @@
               </summary>
               <div class="quest-body">
                 <p>
-                  Yes—available for both remote engagements and onsite collaboration around Trenggalek / East Java. Use the form on the left or email bagasaditiya11@gmail.com.
+                  Exploring modern CSS scroll-driven animations, lightweight vanilla web architectures, and cleaner developer tooling around clinical workflows.
                 </p>
               </div>
             </details>
@@ -531,8 +545,8 @@
             <details class="quest-item">
               <summary>
                 <span class="quest-summary-main">
-                  <span class="quest-meta">FAQ · WORKFLOW</span>
-                  <span class="quest-role">How fast can we kick off a project or role discussion?</span>
+                  <span class="quest-meta">FAQ · CONNECT</span>
+                  <span class="quest-role">What's the best way to say hi or talk shop?</span>
                 </span>
                 <span class="quest-plus" aria-hidden="true">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
@@ -543,7 +557,7 @@
               </summary>
               <div class="quest-body">
                 <p>
-                  Send your brief, role details, or architecture challenge via the form. I reply within 24 hours with next steps and availability.
+                  Drop a quick note using the form, copy my email, or reach out on GitHub and LinkedIn—always happy to chat about code and design craft.
                 </p>
               </div>
             </details>
@@ -564,12 +578,12 @@
 
           <div class="closing-card">
             <span class="brand-badge" aria-hidden="true">B.</span>
-            <h2 class="section-display">READY TO SHIP?</h2>
+            <h2 class="section-display">KEEP TINKERING.</h2>
             <p class="closing-copy">
-              Solid architecture, expressive motion, and zero fluff. Let's build your next product.
+              Built with curiosity, expressive motion, and zero fluff. Thanks for scrolling all the way down.
             </p>
-            <a class="pill-btn pill-btn--lime" href="#contact-email">
-              Start a conversation
+            <a class="pill-btn pill-btn--lime" href="#contact">
+              Drop a quick note
               <span aria-hidden="true">→</span>
             </a>
           </div>

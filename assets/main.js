@@ -124,12 +124,59 @@
   }
 
   if (mascotBtn) {
+    const bubble = mascotBtn.querySelector('.mascot-bubble');
+    const mouth = document.getElementById('mascot-mouth');
+    const laptopLed = document.getElementById('mascot-laptop-led');
+    const defaultMouth = 'M162 154 C172 166, 188 166, 198 154';
+    const reactions = [
+      { text: 'hey there! 👋', mouth: 'M162 154 C172 166, 188 166, 198 154', led: '#b8ff3b' },
+      { text: '0 bugs today (probably)', mouth: 'M166 156 Q180 150 194 156', led: '#22d3ee' },
+      { text: 'mIRC /slap nostalgia', mouth: 'M172 154 A8 8 0 1 0 188 154 A8 8 0 1 0 172 154', led: '#facc15' },
+      { text: 'coffee.exe running ☕', mouth: 'M160 152 Q180 170 200 152 Z', led: '#ff2e93' },
+      { text: 'shipping pixels & code ⚡', mouth: 'M162 156 C174 168, 188 162, 198 150', led: '#b8ff3b' },
+      { text: "console.log('yo!')", mouth: 'M164 154 C174 166, 186 166, 196 154', led: '#22d3ee' },
+    ];
+
+    let lastIdx = -1;
+    let clickCount = 0;
     let bubbleTimer;
+
     mascotBtn.addEventListener('click', () => {
+      clickCount += 1;
+      const isParty = clickCount % 5 === 0;
+      let nextIdx = Math.floor(Math.random() * reactions.length);
+      if (nextIdx === lastIdx) nextIdx = (nextIdx + 1) % reactions.length;
+      lastIdx = nextIdx;
+
+      const reaction = reactions[nextIdx];
+      if (bubble) bubble.textContent = isParty ? '🎉 OVERCLOCKED MODE!' : reaction.text;
+      if (mouth) mouth.setAttribute('d', isParty ? 'M160 150 Q180 174 200 150 Z' : reaction.mouth);
+      if (laptopLed) laptopLed.setAttribute('fill', isParty ? '#facc15' : reaction.led);
+
       mascotBtn.classList.add('is-booped', 'show-bubble');
+      mascotBtn.classList.toggle('is-party', isParty);
       setTimeout(() => mascotBtn.classList.remove('is-booped'), 220);
+
       clearTimeout(bubbleTimer);
-      bubbleTimer = setTimeout(() => mascotBtn.classList.remove('show-bubble'), 1600);
+      bubbleTimer = setTimeout(() => {
+        mascotBtn.classList.remove('show-bubble', 'is-party');
+        if (mouth) mouth.setAttribute('d', defaultMouth);
+      }, 2000);
+    });
+  }
+
+  // 5b. Interactive Work Card Spotlight
+  if (!prefersReducedMotion) {
+    document.querySelectorAll('.poster-card').forEach((card) => {
+      card.addEventListener(
+        'pointermove',
+        (e) => {
+          const rect = card.getBoundingClientRect();
+          card.style.setProperty('--spot-x', `${e.clientX - rect.left}px`);
+          card.style.setProperty('--spot-y', `${e.clientY - rect.top}px`);
+        },
+        { passive: true }
+      );
     });
   }
 
@@ -224,7 +271,7 @@
         submitBtn.removeAttribute('aria-busy');
         submitBtn.textContent = originalLabel;
         formStatus.hidden = false;
-        formStatus.textContent = '✓ Transmission sent! Bagas will reply within 24 hours.';
+        formStatus.textContent = '✓ Note received! Thanks for stopping by.';
       }, 700);
     });
   }

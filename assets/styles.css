@@ -632,6 +632,19 @@ textarea {
   transform: scale(1.06, 0.92) translateY(4px);
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  .mascot-btn.is-party .mascot-svg {
+    animation: mascot-party 0.55s var(--ease-spring);
+  }
+
+  @keyframes mascot-party {
+    0% { transform: rotate(0deg) scale(1); }
+    25% { transform: rotate(-5deg) scale(1.06); }
+    55% { transform: rotate(5deg) scale(1.06); }
+    100% { transform: rotate(0deg) scale(1); }
+  }
+}
+
 .mascot-svg {
   width: clamp(13rem, 26vw, 19rem);
   height: auto;
@@ -641,6 +654,7 @@ textarea {
   position: absolute;
   top: -1rem;
   right: -1rem;
+  white-space: nowrap;
   background: var(--color-lime);
   color: var(--color-ink);
   font-family: var(--font-ui);
@@ -750,6 +764,8 @@ textarea {
 }
 
 .poster-card {
+  position: relative;
+  overflow: hidden;
   background: var(--color-surface);
   border: 2px solid var(--color-ink);
   border-radius: var(--radius-panel);
@@ -764,9 +780,65 @@ textarea {
     box-shadow var(--dur-mid) var(--ease-out-expo);
 }
 
+.poster-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(
+    420px circle at var(--spot-x, 50%) var(--spot-y, 50%),
+    rgba(225, 29, 116, 0.09),
+    transparent 60%
+  );
+  transition: opacity var(--dur-fast) ease;
+}
+
+.poster-card > * {
+  position: relative;
+  z-index: 1;
+}
+
 .poster-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 18px 0 rgba(11, 11, 16, 0.12);
+  box-shadow: 8px 14px 0 var(--color-ink);
+}
+
+.poster-card:hover::before {
+  opacity: 1;
+}
+
+.poster-card:hover .pill-btn span[aria-hidden="true"] {
+  display: inline-block;
+  transform: translate(2px, -2px);
+  transition: transform var(--dur-fast) var(--ease-spring);
+}
+
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 1.25rem;
+}
+
+.card-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid var(--color-border-hairline);
+  background: #f8f8fb;
+  color: var(--color-ink-soft);
+  font-family: var(--font-ui);
+  font-size: var(--text-micro);
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+.card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
 }
 
 .card-kicker {
@@ -998,6 +1070,28 @@ a.info-pill:hover {
 .copy-email-btn:hover {
   border-color: var(--color-ink);
   background: #ececf2;
+}
+
+.direct-link-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-height: 44px;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid var(--color-ink);
+  background: var(--color-surface);
+  color: var(--color-ink);
+  font-family: var(--font-ui);
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color var(--dur-fast) ease, color var(--dur-fast) ease, transform var(--dur-fast) var(--ease-spring);
+}
+
+.direct-link-pill:hover {
+  background: var(--color-lime);
+  transform: translateY(-2px);
 }
 
 .copy-feedback {
