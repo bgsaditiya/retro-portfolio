@@ -125,17 +125,35 @@
 
   if (mascotBtn) {
     const bubble = mascotBtn.querySelector('.mascot-bubble');
+    const confettiLayer = mascotBtn.querySelector('.confetti-layer');
     const mouth = document.getElementById('mascot-mouth');
     const laptopLed = document.getElementById('mascot-laptop-led');
     const defaultMouth = 'M162 154 C172 166, 188 166, 198 154';
+    const confettiColors = ['#b8ff3b', '#22d3ee', '#facc15', '#ffffff', '#a855f7'];
     const reactions = [
-      { text: 'hey there! 👋', mouth: 'M162 154 C172 166, 188 166, 198 154', led: '#b8ff3b' },
-      { text: '0 bugs today (probably)', mouth: 'M166 156 Q180 150 194 156', led: '#22d3ee' },
-      { text: 'mIRC /slap nostalgia', mouth: 'M172 154 A8 8 0 1 0 188 154 A8 8 0 1 0 172 154', led: '#facc15' },
-      { text: 'coffee.exe running ☕', mouth: 'M160 152 Q180 170 200 152 Z', led: '#ff2e93' },
-      { text: 'shipping pixels & code ⚡', mouth: 'M162 156 C174 168, 188 162, 198 150', led: '#b8ff3b' },
-      { text: "console.log('yo!')", mouth: 'M164 154 C174 166, 186 166, 196 154', led: '#22d3ee' },
+      { text: 'shipping... 🚀', eyes: 'wink', mouth: 'M162 156 C174 168, 188 162, 198 150', led: '#b8ff3b' },
+      { text: 'mIRC mode 👾', eyes: 'star', mouth: 'M172 154 A8 8 0 1 0 188 154 A8 8 0 1 0 172 154', led: '#facc15' },
+      { text: '100% coffee ☕', eyes: 'happy', mouth: 'M160 152 Q180 170 200 152 Z', led: '#ff2e93' },
+      { text: '0 bugs (probably)', eyes: 'normal', mouth: 'M166 156 Q180 150 194 156', led: '#22d3ee' },
+      { text: "console.log('yo!')", eyes: 'happy', mouth: 'M164 154 C174 166, 186 166, 196 154', led: '#22d3ee' },
+      { text: 'hey there! 👋', eyes: 'normal', mouth: defaultMouth, led: '#b8ff3b' },
     ];
+
+    const spawnMascotConfetti = () => {
+      if (prefersReducedMotion || !confettiLayer) return;
+      for (let i = 0; i < 12; i += 1) {
+        const spark = document.createElement('span');
+        spark.className = 'confetti-spark';
+        const angle = (Math.PI * 2 * i) / 12 + (Math.random() - 0.5) * 0.35;
+        const dist = 56 + Math.random() * 58;
+        spark.style.setProperty('--dx', `${Math.cos(angle) * dist}px`);
+        spark.style.setProperty('--dy', `${Math.sin(angle) * dist - 28}px`);
+        spark.style.setProperty('--rot', `${Math.round((Math.random() - 0.5) * 420)}deg`);
+        spark.style.background = confettiColors[i % confettiColors.length];
+        confettiLayer.appendChild(spark);
+        spark.addEventListener('animationend', () => spark.remove(), { once: true });
+      }
+    };
 
     let lastIdx = -1;
     let clickCount = 0;
@@ -150,18 +168,21 @@
 
       const reaction = reactions[nextIdx];
       if (bubble) bubble.textContent = isParty ? '🎉 OVERCLOCKED MODE!' : reaction.text;
+      mascotBtn.dataset.eyes = isParty ? 'star' : reaction.eyes;
       if (mouth) mouth.setAttribute('d', isParty ? 'M160 150 Q180 174 200 150 Z' : reaction.mouth);
       if (laptopLed) laptopLed.setAttribute('fill', isParty ? '#facc15' : reaction.led);
 
       mascotBtn.classList.add('is-booped', 'show-bubble');
       mascotBtn.classList.toggle('is-party', isParty);
+      spawnMascotConfetti();
       setTimeout(() => mascotBtn.classList.remove('is-booped'), 220);
 
       clearTimeout(bubbleTimer);
       bubbleTimer = setTimeout(() => {
         mascotBtn.classList.remove('show-bubble', 'is-party');
+        mascotBtn.dataset.eyes = 'normal';
         if (mouth) mouth.setAttribute('d', defaultMouth);
-      }, 2000);
+      }, 2200);
     });
   }
 
@@ -177,6 +198,151 @@
         },
         { passive: true }
       );
+    });
+  }
+
+  // 5c. Before/After Craft Slider
+  const craftCompare = document.getElementById('craft-compare');
+  const craftSlider = document.getElementById('craft-slider');
+  if (craftCompare && craftSlider) {
+    const syncCompare = () => {
+      const val = Number(craftSlider.value);
+      craftCompare.style.setProperty('--compare', `${val}%`);
+      craftSlider.setAttribute('aria-valuetext', `${val} percent final UI`);
+    };
+    craftSlider.addEventListener('input', syncCompare);
+    syncCompare();
+  }
+
+  // 5d. Live Trenggalek Clock (WIB / Asia/Jakarta)
+  const clockEl = document.getElementById('local-clock');
+  if (clockEl) {
+    const wibFormatter = new Intl.DateTimeFormat('en-GB', {
+      timeZone: 'Asia/Jakarta',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: false,
+    });
+    const updateClock = () => {
+      clockEl.textContent = `${wibFormatter.format(new Date())} WIB`;
+    };
+    updateClock();
+    let clockInterval = setInterval(updateClock, 1000);
+    document.addEventListener('visibilitychange', () => {
+      clearInterval(clockInterval);
+      if (!document.hidden) {
+        updateClock();
+        clockInterval = setInterval(updateClock, 1000);
+      }
+    });
+  }
+
+  // 5e. Kinetic Variable-Font Pointer Sweep on Display Headlines
+  if (!prefersReducedMotion && window.matchMedia('(hover: hover)').matches) {
+    document.querySelectorAll('.hero-title, .section-display').forEach((heading) => {
+      const isHero = heading.classList.contains('hero-title');
+      heading.addEventListener(
+        'pointermove',
+        (e) => {
+          const rect = heading.getBoundingClientRect();
+          const ratio = rect.width > 0 ? Math.min(1, Math.max(0, (e.clientX - rect.left) / rect.width)) : 0.5;
+          const wdth = Math.round(86 + ratio * 12);
+          const wght = isHero ? Math.round(760 + ratio * 40) : Math.round(400 + ratio * 240);
+          heading.style.setProperty('--vf-wdth', String(wdth));
+          heading.style.setProperty('--vf-wght', String(wght));
+        },
+        { passive: true }
+      );
+      heading.addEventListener('pointerleave', () => {
+        heading.style.removeProperty('--vf-wdth');
+        heading.style.removeProperty('--vf-wght');
+      });
+    });
+  }
+
+  // 5f. Retro mIRC Easter Egg Dialog (ID #00256 badge or /mirc)
+  const mircTrigger = document.getElementById('mirc-trigger');
+  const mircDialog = document.getElementById('mirc-dialog');
+  const mircClose = document.getElementById('mirc-close');
+  const mircLog = document.getElementById('mirc-log');
+  const mircForm = document.getElementById('mirc-cmd-form');
+  const mircInput = document.getElementById('mirc-cmd-input');
+
+  if (mircDialog && typeof mircDialog.showModal === 'function') {
+    const appendLog = (text, cls = 'mirc-sys') => {
+      if (!mircLog) return;
+      const now = new Date();
+      const ts = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+      const p = document.createElement('p');
+      const tsSpan = document.createElement('span');
+      tsSpan.className = 'mirc-ts';
+      tsSpan.textContent = `[${ts}] `;
+      const bodySpan = document.createElement('span');
+      bodySpan.className = cls;
+      bodySpan.textContent = text;
+      p.append(tsSpan, bodySpan);
+      mircLog.appendChild(p);
+      mircLog.scrollTop = mircLog.scrollHeight;
+    };
+
+    const openMirc = () => {
+      if (!mircDialog.open) mircDialog.showModal();
+    };
+
+    if (mircTrigger) mircTrigger.addEventListener('click', openMirc);
+    if (mircClose) mircClose.addEventListener('click', () => mircDialog.close());
+
+    mircDialog.addEventListener('click', (e) => {
+      if (e.target === mircDialog) mircDialog.close();
+    });
+
+    if (mircForm && mircInput) {
+      mircForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const raw = mircInput.value.trim();
+        if (!raw) return;
+        mircInput.value = '';
+        const cmd = raw.toLowerCase();
+
+        if (cmd === '/help') {
+          appendLog('* Commands: /stack, /slap, /pink, /clear, /quit');
+        } else if (cmd === '/stack') {
+          appendLog('<@bagas> SIMRS/EMR · TypeScript · React Native · Next.js · GraphQL · Modern CSS', 'mirc-nick');
+        } else if (cmd === '/slap') {
+          appendLog('* bagas slaps corporate gray gradients with #e11d74 hot pink', 'mirc-action');
+        } else if (cmd === '/pink') {
+          appendLog('* Theme verified: #e11d74 + #b8ff3b + Bricolage Grotesque 96pt.', 'mirc-join');
+        } else if (cmd === '/clear') {
+          if (mircLog) mircLog.textContent = '';
+          appendLog('* Channel buffer cleared.');
+        } else if (cmd === '/quit' || cmd === '/exit') {
+          mircDialog.close();
+        } else {
+          appendLog(`<guest> ${raw}`, 'mirc-join');
+        }
+      });
+    }
+
+    let keyBuffer = '';
+    document.addEventListener('keydown', (e) => {
+      const target = e.target;
+      if (
+        target &&
+        (target.tagName === 'INPUT' ||
+          target.tagName === 'TEXTAREA' ||
+          target.tagName === 'SELECT' ||
+          target.isContentEditable)
+      ) {
+        return;
+      }
+      if (e.key.length === 1 && !e.ctrlKey && !e.metaKey && !e.altKey) {
+        keyBuffer = (keyBuffer + e.key.toLowerCase()).slice(-5);
+        if (keyBuffer === '/mirc') {
+          keyBuffer = '';
+          openMirc();
+        }
+      }
     });
   }
 

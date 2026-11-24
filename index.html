@@ -29,8 +29,15 @@
   <a class="skip-link" href="#main-content">Skip to main content</a>
   <div id="scroll-progress" class="scroll-progress" aria-hidden="true"></div>
 
-  <!-- Right-edge vertical rail badge (decorative status, separate from CTAs) -->
-  <div class="edge-rail" aria-hidden="true">BUILDING IN PUBLIC · ID #00256</div>
+  <!-- Right-edge vertical rail badge (opens retro mIRC log) -->
+  <button
+    id="mirc-trigger"
+    class="edge-rail"
+    type="button"
+    aria-haspopup="dialog"
+    aria-controls="mirc-dialog"
+    title="Open retro mIRC log (or type /mirc)"
+  >BUILDING IN PUBLIC · ID #00256</button>
 
   <!-- Header Chrome -->
   <header class="site-header">
@@ -128,8 +135,10 @@
             id="mascot-btn"
             class="mascot-btn"
             type="button"
-            aria-label="Playful developer mascot illustration, activate for a greeting"
+            data-eyes="normal"
+            aria-label="Playful developer mascot illustration, activate for a mood reaction"
           >
+            <span class="confetti-layer" aria-hidden="true"></span>
             <span class="mascot-bubble" aria-hidden="true">hey there!</span>
             <svg class="mascot-svg" viewBox="0 0 360 220" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <!-- Headphone Band -->
@@ -144,16 +153,35 @@
               <rect x="104" y="64" width="152" height="122" rx="58" fill="#fbbf93" stroke="#0b0b10" stroke-width="5"/>
               <!-- Hair Cap -->
               <path d="M104 110 C104 68, 140 50, 184 50 C228 50, 256 72, 256 108 C236 96, 210 92, 180 96 C148 100, 124 94, 104 110 Z" fill="#0b0b10"/>
-              <!-- Eyes -->
-              <ellipse cx="146" cy="126" rx="17" ry="19" fill="#ffffff" stroke="#0b0b10" stroke-width="4"/>
-              <ellipse cx="214" cy="126" rx="17" ry="19" fill="#ffffff" stroke="#0b0b10" stroke-width="4"/>
-              <g class="mascot-pupil">
-                <circle cx="148" cy="126" r="8" fill="#0b0b10"/>
-                <circle cx="151" cy="123" r="2.5" fill="#ffffff"/>
+              <!-- Eyes: Normal (pointer-tracking) -->
+              <g class="eyes-group eyes-normal">
+                <ellipse cx="146" cy="126" rx="17" ry="19" fill="#ffffff" stroke="#0b0b10" stroke-width="4"/>
+                <ellipse cx="214" cy="126" rx="17" ry="19" fill="#ffffff" stroke="#0b0b10" stroke-width="4"/>
+                <g class="mascot-pupil">
+                  <circle cx="148" cy="126" r="8" fill="#0b0b10"/>
+                  <circle cx="151" cy="123" r="2.5" fill="#ffffff"/>
+                </g>
+                <g class="mascot-pupil">
+                  <circle cx="216" cy="126" r="8" fill="#0b0b10"/>
+                  <circle cx="219" cy="123" r="2.5" fill="#ffffff"/>
+                </g>
               </g>
-              <g class="mascot-pupil">
+              <!-- Eyes: Happy (^ ^) -->
+              <g class="eyes-group eyes-happy">
+                <path d="M131 129 Q146 112 161 129" stroke="#0b0b10" stroke-width="5" stroke-linecap="round"/>
+                <path d="M199 129 Q214 112 229 129" stroke="#0b0b10" stroke-width="5" stroke-linecap="round"/>
+              </g>
+              <!-- Eyes: Wink (> O) -->
+              <g class="eyes-group eyes-wink">
+                <path d="M132 118 L158 126 L132 134" stroke="#0b0b10" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                <ellipse cx="214" cy="126" rx="17" ry="19" fill="#ffffff" stroke="#0b0b10" stroke-width="4"/>
                 <circle cx="216" cy="126" r="8" fill="#0b0b10"/>
                 <circle cx="219" cy="123" r="2.5" fill="#ffffff"/>
+              </g>
+              <!-- Eyes: Star / Overclocked -->
+              <g class="eyes-group eyes-star">
+                <path d="M146 108 L150 121 L163 126 L150 131 L146 144 L142 131 L129 126 L142 121 Z" fill="#b8ff3b" stroke="#0b0b10" stroke-width="3" stroke-linejoin="round"/>
+                <path d="M214 108 L218 121 L231 126 L218 131 L214 144 L210 131 L197 126 L210 121 Z" fill="#22d3ee" stroke="#0b0b10" stroke-width="3" stroke-linejoin="round"/>
               </g>
               <!-- Smile -->
               <path id="mascot-mouth" d="M162 154 C172 166, 188 166, 198 154" stroke="#0b0b10" stroke-width="4.5" stroke-linecap="round"/>
@@ -182,29 +210,49 @@
         <div class="cards-grid">
           <article class="poster-card" data-reveal data-delay="60ms">
             <div>
-              <span class="card-kicker">01 · Web Experiment &amp; Motion UI</span>
+              <span class="card-kicker">01 · Visual Craft &amp; Motion UI</span>
               <h3 class="card-title">Poster Portfolio &amp; Kinetic SVG Lab</h3>
-              <p class="card-meta">Vanilla CSS · Scroll-Driven Motion · Zero Runtime Deps</p>
-              <ul class="card-list">
-                <li>
-                  <svg class="card-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  <span>Poster-grade typography with self-hosted variable Bricolage Grotesque (opsz &amp; wdth axes)</span>
-                </li>
-                <li>
-                  <svg class="card-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  <span>Native CSS scroll() progress, view() parallax, and spring-physics micro-interactions</span>
-                </li>
-                <li>
-                  <svg class="card-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  <span>Pointer-tracking SVG mascot with interactive mood states and speech bubble easter eggs</span>
-                </li>
-              </ul>
+              <p class="card-meta">Photo-Editor Precision · Wireframe to Final UI</p>
+
+              <div class="craft-compare" id="craft-compare" style="--compare: 52%;">
+                <!-- BEFORE: Raw / Wireframe Stage -->
+                <div class="compare-layer compare-before" aria-hidden="true">
+                  <span class="compare-badge compare-badge--raw">RAW · WIREFRAME</span>
+                  <div class="wireframe-mock">
+                    <span class="wire-pill"></span>
+                    <span class="wire-title">BAGAS ADITIA.</span>
+                    <span class="wire-bar"></span>
+                    <span class="wire-btn">EXPLORE WORK</span>
+                  </div>
+                </div>
+
+                <!-- AFTER: Final Poster UI Stage -->
+                <div class="compare-layer compare-after" aria-hidden="true">
+                  <span class="compare-badge compare-badge--final">FINAL · POSTER UI</span>
+                  <div class="final-mock">
+                    <span class="final-pill">JUST SHARING CRAFT</span>
+                    <span class="final-title">BAGAS ADITIA.</span>
+                    <span class="final-sub">Bricolage 96pt · #e11d74</span>
+                    <span class="final-btn">Explore my work ↓</span>
+                  </div>
+                </div>
+
+                <div class="compare-divider" aria-hidden="true">
+                  <span class="compare-handle">↔</span>
+                </div>
+
+                <input
+                  id="craft-slider"
+                  class="compare-range"
+                  type="range"
+                  min="0"
+                  max="100"
+                  value="52"
+                  aria-label="Compare raw wireframe and final poster UI"
+                  aria-valuetext="52 percent final UI"
+                >
+              </div>
+
               <div class="card-tags" aria-label="Tech stack">
                 <span class="card-tag">HTML5</span>
                 <span class="card-tag">Modern CSS</span>
@@ -296,7 +344,12 @@
           </p>
 
           <div class="profile-pills">
-            <span class="info-pill">Trenggalek, ID · Onsite &amp; Remote</span>
+            <span class="info-pill info-pill--live">
+              <span class="live-dot" aria-hidden="true"></span>
+              <span>Trenggalek, ID</span>
+              <span aria-hidden="true">·</span>
+              <time id="local-clock" class="live-clock">--:--:-- WIB</time>
+            </span>
             <a class="info-pill" href="https://github.com/bgsaditiya" target="_blank" rel="noopener noreferrer">
               GitHub
               <span aria-hidden="true">↗</span>
@@ -306,6 +359,18 @@
               <span aria-hidden="true">↗</span>
             </a>
           </div>
+
+          <aside class="tinkering-card" aria-label="Currently tinkering with">
+            <div class="tinkering-header">
+              <span class="tinkering-kicker">Currently tinkering with</span>
+              <span class="tinkering-hint">tip: type <code>/mirc</code></span>
+            </div>
+            <ul class="tinkering-list">
+              <li>CSS scroll-driven motion &amp; variable font micro-interactions</li>
+              <li>Resilient BPJS &amp; SatuSehat clinical API patterns</li>
+              <li>Zero-dependency interactive web toys</li>
+            </ul>
+          </aside>
         </div>
       </div>
 
@@ -600,5 +665,27 @@
       </div>
     </section>
   </main>
+
+  <!-- Retro mIRC Easter Egg Dialog -->
+  <dialog id="mirc-dialog" class="mirc-dialog" aria-labelledby="mirc-title">
+    <div class="mirc-window">
+      <header class="mirc-titlebar">
+        <span id="mirc-title" class="mirc-title">mIRC32 — [#bgsaditiya · ID #00256]</span>
+        <button id="mirc-close" class="mirc-close" type="button" aria-label="Close mIRC log">×</button>
+      </header>
+      <div id="mirc-log" class="mirc-log" role="log" aria-live="polite">
+        <p><span class="mirc-ts">[00:01]</span> <span class="mirc-sys">* Connecting to irc.bgsaditiya.dev (6667)</span></p>
+        <p><span class="mirc-ts">[00:02]</span> <span class="mirc-join">* Now talking in #craft</span></p>
+        <p><span class="mirc-ts">[00:03]</span> <span class="mirc-nick">&lt;@bagas&gt;</span> started scripting bots back in early mIRC days: <code>on *:TEXT:!ping:#:msg $chan pong!</code></p>
+        <p><span class="mirc-ts">[00:04]</span> <span class="mirc-nick">&lt;@bagas&gt;</span> fast-forward to 2026: shipping SIMRS/EMR bridges &amp; hot-pink #e11d74 poster UIs.</p>
+        <p><span class="mirc-ts">[00:05]</span> <span class="mirc-action">* bagas slaps boring corporate templates around a bit with a large variable font</span></p>
+      </div>
+      <form id="mirc-cmd-form" class="mirc-input-bar">
+        <label class="sr-only" for="mirc-cmd-input">Type an IRC command</label>
+        <span class="mirc-prompt" aria-hidden="true">&gt;</span>
+        <input id="mirc-cmd-input" type="text" placeholder="try /help, /stack, /slap, or /quit" autocomplete="off" spellcheck="false">
+      </form>
+    </div>
+  </dialog>
 </body>
 </html>

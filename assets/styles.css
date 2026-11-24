@@ -344,6 +344,7 @@ textarea {
   font-family: var(--font-display);
   font-size: var(--text-label);
   font-weight: 700;
+  font-variation-settings: "opsz" 24, "wdth" 92, "wght" 700;
   letter-spacing: -0.017em;
   line-height: 1.2;
   text-decoration: none;
@@ -352,7 +353,15 @@ textarea {
     transform var(--dur-fast) var(--ease-spring),
     background-color var(--dur-fast) ease,
     color var(--dur-fast) ease,
-    box-shadow var(--dur-fast) ease;
+    box-shadow var(--dur-fast) ease,
+    font-variation-settings var(--dur-fast) var(--ease-out-expo);
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .pill-btn:hover,
+  .pill-btn:focus-visible {
+    font-variation-settings: "opsz" 24, "wdth" 100, "wght" 800;
+  }
 }
 
 .pill-btn--sm {
@@ -424,7 +433,7 @@ textarea {
   transform: none;
 }
 
-/* Right-Edge Vertical Rail Badge (Desktop only, non-button decorative status) */
+/* Right-Edge Vertical Rail Badge (Desktop only, opens mIRC easter egg) */
 .edge-rail {
   display: none;
 }
@@ -452,8 +461,17 @@ textarea {
     font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    pointer-events: none;
+    cursor: pointer;
     box-shadow: -3px 3px 0 rgba(11, 11, 16, 0.2);
+    transition:
+      transform var(--dur-fast) var(--ease-spring),
+      background-color var(--dur-fast) ease;
+  }
+
+  .edge-rail:hover,
+  .edge-rail:focus-visible {
+    background: var(--color-lime);
+    transform: translate(-4px, -50%);
   }
 }
 
@@ -552,11 +570,18 @@ textarea {
   margin: 0;
   font-size: var(--text-display);
   font-weight: 800;
-  font-variation-settings: "opsz" 96, "wdth" 88;
+  font-variation-settings: "opsz" 96, "wdth" var(--vf-wdth, 88), "wght" var(--vf-wght, 800);
   line-height: 0.85;
   letter-spacing: -0.017em;
   text-transform: uppercase;
   color: var(--color-surface);
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .hero-title,
+  .section-display {
+    transition: font-variation-settings 220ms var(--ease-out-expo);
+  }
 }
 
 .hero-line {
@@ -650,6 +675,68 @@ textarea {
   height: auto;
 }
 
+/* Mascot Eye Mood Layers */
+.eyes-group {
+  display: none;
+}
+
+.mascot-btn[data-eyes="normal"] .eyes-normal,
+.mascot-btn:not([data-eyes]) .eyes-normal {
+  display: inline;
+}
+
+.mascot-btn[data-eyes="happy"] .eyes-happy {
+  display: inline;
+}
+
+.mascot-btn[data-eyes="wink"] .eyes-wink {
+  display: inline;
+}
+
+.mascot-btn[data-eyes="star"] .eyes-star {
+  display: inline;
+}
+
+/* Mascot Confetti Burst */
+.confetti-layer {
+  position: absolute;
+  left: 50%;
+  top: 42%;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.confetti-spark {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  border: 1.5px solid var(--color-ink);
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .confetti-spark {
+    animation: confetti-burst 760ms var(--ease-out-expo) forwards;
+  }
+
+  @keyframes confetti-burst {
+    0% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(0.7) rotate(0deg);
+    }
+    75% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      transform: translate(var(--dx, 0px), var(--dy, -80px)) scale(0.4) rotate(var(--rot, 180deg));
+    }
+  }
+}
+
 .mascot-bubble {
   position: absolute;
   top: -1rem;
@@ -732,7 +819,7 @@ textarea {
   margin: 0;
   font-size: var(--text-section);
   font-weight: 400;
-  font-variation-settings: "opsz" 96, "wdth" 88;
+  font-variation-settings: "opsz" 96, "wdth" var(--vf-wdth, 88), "wght" var(--vf-wght, 400);
   line-height: 0.88;
   letter-spacing: -0.017em;
   text-transform: uppercase;
@@ -898,6 +985,199 @@ textarea {
   color: var(--color-pink);
 }
 
+/* Before/After Craft Slider (Raw Wireframe -> Final Poster UI) */
+.craft-compare {
+  position: relative;
+  margin-top: 1.25rem;
+  aspect-ratio: 16 / 10;
+  min-height: 12.5rem;
+  border-radius: 1.25rem;
+  border: 2px solid var(--color-ink);
+  overflow: hidden;
+  user-select: none;
+  background: #f4f4f8;
+}
+
+.compare-layer {
+  position: absolute;
+  inset: 0;
+  padding: 1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.compare-before {
+  background:
+    linear-gradient(to right, rgba(11, 11, 16, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(11, 11, 16, 0.06) 1px, transparent 1px),
+    #f1f2f6;
+  background-size: 20px 20px;
+  color: var(--color-muted);
+}
+
+.compare-after {
+  background: var(--color-pink);
+  color: var(--color-surface);
+  clip-path: inset(0 calc(100% - var(--compare, 52%)) 0 0);
+}
+
+.compare-badge {
+  position: absolute;
+  top: 0.65rem;
+  font-family: var(--font-ui);
+  font-size: 0.625rem;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid var(--color-ink);
+}
+
+.compare-badge--raw {
+  right: 0.65rem;
+  background: var(--color-surface);
+  color: var(--color-ink);
+}
+
+.compare-badge--final {
+  left: 0.65rem;
+  background: var(--color-lime);
+  color: var(--color-ink);
+}
+
+.wireframe-mock,
+.final-mock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  pointer-events: none;
+}
+
+.wire-pill {
+  width: 5.5rem;
+  height: 0.85rem;
+  border-radius: var(--radius-pill);
+  border: 1.5px dashed var(--color-border-light);
+}
+
+.wire-title {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: clamp(1.35rem, 2.5vw, 1.9rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: transparent;
+  -webkit-text-stroke: 1.5px #71717a;
+}
+
+.wire-bar {
+  width: 10rem;
+  height: 0.65rem;
+  border-radius: 4px;
+  border: 1.5px dashed var(--color-border-light);
+}
+
+.wire-btn {
+  margin-top: 0.2rem;
+  padding: 0.3rem 0.85rem;
+  border: 1.5px dashed var(--color-ink-soft);
+  border-radius: var(--radius-pill);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  color: var(--color-muted);
+}
+
+.final-pill {
+  padding: 0.18rem 0.65rem;
+  border-radius: var(--radius-pill);
+  background: rgba(11, 11, 16, 0.25);
+  font-family: var(--font-ui);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--color-surface);
+}
+
+.final-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.45rem, 2.6vw, 2rem);
+  font-weight: 800;
+  font-variation-settings: "opsz" 96, "wdth" 88;
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  color: var(--color-surface);
+}
+
+.final-sub {
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.final-btn {
+  margin-top: 0.2rem;
+  padding: 0.32rem 0.9rem;
+  border-radius: var(--radius-pill);
+  background: var(--color-surface);
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 700;
+  box-shadow: 0 3px 0 rgba(11, 11, 16, 0.2);
+}
+
+.compare-divider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--compare, 52%);
+  width: 2px;
+  background: var(--color-ink);
+  transform: translateX(-50%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.compare-handle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 50%;
+  background: var(--color-lime);
+  color: var(--color-ink);
+  border: 2px solid var(--color-ink);
+  box-shadow: 2px 2px 0 var(--color-ink);
+  display: grid;
+  place-items: center;
+  font-family: var(--font-ui);
+  font-size: 0.875rem;
+  font-weight: 800;
+}
+
+.compare-range {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: ew-resize;
+  z-index: 3;
+}
+
+.compare-range:focus-visible + .compare-divider .compare-handle {
+  outline: 3px solid var(--color-surface);
+  outline-offset: 2px;
+}
+
 /* =========================================================
    CHAPTER 3: DARK ILLUSTRATION STAGE (Origin Story)
    ========================================================= */
@@ -974,6 +1254,94 @@ a.info-pill:hover {
   background: var(--color-lime);
   color: var(--color-ink);
   transform: translateY(-2px);
+}
+
+/* Live Trenggalek Clock Pill & Tinkering Mini Card */
+.info-pill--live {
+  border-color: rgba(184, 255, 59, 0.45);
+}
+
+.live-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--color-lime);
+  flex-shrink: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .live-dot {
+    animation: pulse-live 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-live {
+    0%, 100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.45;
+      transform: scale(0.8);
+    }
+  }
+}
+
+.live-clock {
+  font-variant-numeric: tabular-nums;
+  color: var(--color-lime);
+  font-weight: 700;
+}
+
+.tinkering-card {
+  width: 100%;
+  max-width: 36rem;
+  text-align: left;
+  padding: 1.15rem 1.35rem;
+  border-radius: 1.5rem;
+  border: 1.5px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.tinkering-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.65rem;
+}
+
+.tinkering-kicker {
+  font-family: var(--font-ui);
+  font-size: var(--text-micro);
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--color-lime);
+}
+
+.tinkering-hint {
+  font-family: var(--font-ui);
+  font-size: var(--text-micro);
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.tinkering-hint code {
+  padding: 0.1rem 0.4rem;
+  border-radius: 0.4rem;
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--color-surface);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.tinkering-list {
+  margin: 0;
+  padding-left: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.9375rem;
+  color: rgba(255, 255, 255, 0.88);
 }
 
 .stage-arc {
@@ -1417,7 +1785,156 @@ a.info-pill:hover {
   .closing-card,
   .pill-btn,
   .edge-rail,
-  .brand-badge {
+  .brand-badge,
+  .mirc-window {
     border: 2px solid CanvasText;
   }
+}
+
+/* =========================================================
+   RETRO mIRC EASTER EGG DIALOG
+   ========================================================= */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.mirc-dialog {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  max-width: min(38rem, calc(100vw - 2rem));
+  width: 100%;
+  margin: auto;
+  color: var(--color-surface);
+}
+
+.mirc-dialog::backdrop {
+  background: rgba(11, 11, 16, 0.72);
+  backdrop-filter: blur(4px);
+}
+
+.mirc-window {
+  border: 2px solid var(--color-ink);
+  border-radius: 1rem;
+  overflow: hidden;
+  background: #101018;
+  box-shadow: 8px 10px 0 var(--color-ink);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .mirc-dialog[open] .mirc-window {
+    animation: mirc-pop 0.24s var(--ease-spring);
+  }
+
+  @keyframes mirc-pop {
+    from {
+      opacity: 0;
+      transform: translateY(12px) scale(0.96);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+}
+
+.mirc-titlebar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.65rem 1rem;
+  background: linear-gradient(90deg, #1d4ed8, var(--color-pink));
+  color: var(--color-surface);
+  border-bottom: 2px solid var(--color-ink);
+}
+
+.mirc-title {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.mirc-close {
+  width: 1.85rem;
+  height: 1.85rem;
+  border-radius: 0.45rem;
+  border: 1.5px solid var(--color-ink);
+  background: var(--color-surface);
+  color: var(--color-ink);
+  font-size: 1.125rem;
+  font-weight: 800;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.mirc-close:hover {
+  background: var(--color-lime);
+}
+
+.mirc-log {
+  padding: 1rem;
+  max-height: 17rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  font-size: 0.84375rem;
+  line-height: 1.5;
+  color: #e4e4ec;
+}
+
+.mirc-log p {
+  margin: 0;
+}
+
+.mirc-log code {
+  color: var(--color-lime);
+  background: rgba(255, 255, 255, 0.08);
+  padding: 0.08rem 0.35rem;
+  border-radius: 0.25rem;
+}
+
+.mirc-ts { color: #71717a; }
+.mirc-sys { color: #22d3ee; }
+.mirc-join { color: #b8ff3b; }
+.mirc-nick { color: #facc15; font-weight: 700; }
+.mirc-action { color: #ff2e93; font-style: italic; }
+
+.mirc-input-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1rem;
+  border-top: 1.5px solid #2c2c3a;
+  background: #0b0b10;
+}
+
+.mirc-prompt {
+  color: var(--color-lime);
+  font-weight: 700;
+}
+
+.mirc-input-bar input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  color: var(--color-surface);
+  font-family: inherit;
+  font-size: 0.875rem;
+  outline: none;
+}
+
+.mirc-input-bar input::placeholder {
+  color: #71717a;
 }
